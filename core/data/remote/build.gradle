@@ -1,0 +1,31 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+apply from: "$rootDir/plugins/android-build.gradle"
+
+def keyApiPropertiesFile = rootProject.file("$rootDir/keyApi.properties")
+def keyApiProperties = new Properties()
+keyApiProperties.load(new FileInputStream(keyApiPropertiesFile))
+
+android {
+    namespace 'com.lcabral.artseventh.core.data.remote'
+    defaultConfig {
+        buildConfigField "String", "API_KEY", keyApiProperties['API_KEY']
+        buildConfigField "String", "API_URL", '"https://api.themoviedb.org/3/"'
+    }
+
+    buildFeatures {
+        buildConfig = true
+    }
+}
+
+dependencies {
+
+    // Libs
+    implementation(Libs.okhttp)
+    implementation(Libs.okHttpLoggingInterceptor)
+    implementation(Libs.retrofit)
+    implementation(Libs.retrofitGsonConverter)
+}

@@ -1,4 +1,4 @@
-package com.lcabral.artseventh
+package com.lcabral.artseventh.core.data.remote
 
 import org.junit.Test
 

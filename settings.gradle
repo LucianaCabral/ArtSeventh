@@ -13,4 +13,10 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "ArtSeventh"
-include ':app'
+include ':app',
+        ':core',
+        ':core:data',
+        ':core:data:remote',
+        ':libraries',
+        ':libraries:arch'
+
