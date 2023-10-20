@@ -1,0 +1,20 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+apply from: "$rootDir/plugins/android-build.gradle"
+
+
+android {
+    namespace 'com.lcabral.artseventh.core.data.remote'
+    }
+
+dependencies {
+
+    // Libs
+    implementation(Libs.okhttp)
+    implementation(Libs.okHttpLoggingInterceptor)
+    implementation(Libs.retrofit)
+    implementation(Libs.retrofitGsonConverter)
+}
