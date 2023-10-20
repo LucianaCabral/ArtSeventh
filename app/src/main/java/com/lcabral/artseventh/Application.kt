@@ -1,6 +1,8 @@
 package com.lcabral.artseventh
 
 import android.app.Application
+import com.lcabral.artseventh.core.data.remote.di.RemoteModule
+import com.lcabral.artseventh.di.MainModule.modules
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
@@ -14,6 +16,7 @@ class Application : Application() {
         startKoin {
             androidContext(this@Application)
         }
+        modules.load()
     }
 
     override fun onTerminate() {
@@ -23,7 +26,8 @@ class Application : Application() {
 
     private fun List<Module>.load() {
         loadKoinModules(
-            modules = this
+            modules = this +
+                    RemoteModule.modules
         )
     }
 }
