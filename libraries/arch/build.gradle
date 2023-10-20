@@ -1,0 +1,15 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+apply from: "$rootDir/pl" +
+        "ugins/android-build.gradle"
+
+android {
+    namespace 'com.lcabral.artseventh.libraries.arch'
+}
+
+dependencies {
+    // Libs
+}
