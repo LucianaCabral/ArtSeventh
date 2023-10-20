@@ -1,0 +1,51 @@
+apply plugin: 'kotlin-parcelize'
+
+apply from: "$rootDir/plugins/test-build.gradle"
+
+android {
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 34
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "$rootDir/app/proguard-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
+                    "$rootDir/app/proguard-rules.pro",
+                    "$rootDir/app/proguard-rules-staging.pro"
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    // Libs
+    implementation(Libs.coreKtx)
+    implementation(Libs.appCompat)
+    implementation(Libs.material)
+    implementation(Libs.constraintLayout)
+    implementation(Libs.fragmentKtx)
+    implementation(Libs.koinAndroid)
+    implementation(Libs.koinScope)
+    implementation(Libs.koinViewModel)
+    implementation(Libs.koinCore)
+    implementation(Libs.gson)
+    implementation(Libs.swipeRefreshLayout)
+    implementation(Libs.glideCompiler)
+    implementation(Libs.glideAnnotationProcessor)
+}
