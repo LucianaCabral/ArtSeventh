@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="movie_overview">Overview</string>
+    <string name="movie_original_language">Original language: %s</string>
+    <string name="movie_vote_count">Vote: %s</string>
+    <string name="movie_vote_average">Vote average: %s</string>
+    <string name="movie_release">Release: </string>
+    <string name="movie_original_title">Original title: </string>
+    <string name="movie_adult">Adult: </string>
+    <string name="movie_popularity">Popularity: </string>
+    <string name="movie_image_movie">image_movie</string>
+    <string name="movie_about_movie">About movie</string>
+    <string name="movie_video">Video: %s </string>
+    <string name="movie_separador_details">DETAILS</string>
+    <string name="movie_more_details">MORE DETAILS</string>
+    <string name="yes_have">yes</string>
+    <string name="no_have">No</string>
+    <string name="movie_more_details_about_movies">More details about movies</string>
+    <string name="movie_uri_image">https://image.tmdb.org/t/p/w500</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ds_dialog_title_feedback_error">Opa! Ocorreu um erro</string>
+    <string name="ds_dialog_feedback_message_error">Aguarde</string>
+    <string name="ds_dialog_icon_cancel">Cancelar</string>
+    <string name="ds_dialog_feedback_error_canceled">cancelado</string>
+</resources>
