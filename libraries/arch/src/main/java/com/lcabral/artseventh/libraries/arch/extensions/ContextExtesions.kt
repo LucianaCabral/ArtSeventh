@@ -10,5 +10,4 @@ inline fun <reified A: Activity> Context.createIntent(
 ) = Intent(this, A::class.java)
     .apply(params)
     .also { intent ->
-        flags?.let { intent.flags = it}
 }
