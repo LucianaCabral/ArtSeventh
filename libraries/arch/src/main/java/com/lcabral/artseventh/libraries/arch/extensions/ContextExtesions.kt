@@ -1,9 +1,8 @@
-package com.lcabral.search.extensions
+package com.lcabral.artseventh.libraries.arch.extensions
 
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import com.lcabral.artseventh.libraries.arch.extensions.IntentParams
 
 inline fun <reified A: Activity> Context.createIntent(
     flags:Int? = null,
