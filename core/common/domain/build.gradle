@@ -1,0 +1,10 @@
+plugins {
+    id 'java-library'
+    id 'org.jetbrains.kotlin.jvm'
+}
+
+dependencies {
+    // Libs
+    implementation(Libs.coroutinesAndroid)
+    implementation(Libs.coroutinesCore)
+}
