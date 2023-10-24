@@ -20,5 +20,5 @@ include ':app',
         ':core:data',
         ':core:data:remote',
         ':libraries',
-        ':libraries:arch'
-
+        ':libraries:arch',
+        ':libraries:dstools'
