@@ -17,9 +17,10 @@ include ':app',
         ':core',
         ':core:common',
         ':core:common:domain',
+        ':core:common:navigation',
         ':core:data',
         ':core:data:remote',
         ':libraries',
         ':libraries:arch',
         ':libraries:dstools'
-include ':core:common:navigation'
+
