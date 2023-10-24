@@ -22,3 +22,4 @@ include ':app',
         ':libraries',
         ':libraries:arch',
         ':libraries:dstools'
+include ':core:common:navigation'
