@@ -3,9 +3,13 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+apply from: "$rootDir/plugins/android-build.gradle"
+
 android {
     namespace 'com.lcabral.artseventh.core.data.hub'
 }
 
 dependencies {
+    implementation project(Modules.domain)
+    implementation project(Modules.remote)
 }
