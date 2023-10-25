@@ -15,7 +15,6 @@ dependencyResolutionManagement {
 rootProject.name = "ArtSeventh"
 include ':app',
         ':core',
-
         ':core:common',
         ':core:common:domain',
         ':core:common:navigation',
