@@ -1,0 +1,7 @@
+<resources>
+    <string name="header_image_user">Image User</string>
+    <string name="header_hello">Olá</string>
+    <string name="header_settings">Configurações</string>
+    <string name="header_about">About</string>
+    <string name="header_me">Lee Lou</string>
+</resources>
