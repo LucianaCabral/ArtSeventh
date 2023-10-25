@@ -19,8 +19,10 @@ include ':app',
         ':core:common:domain',
         ':core:common:navigation',
         ':core:data',
+        ':core:data:hub',
         ':core:data:local',
         ':core:data:remote',
         ':libraries',
         ':libraries:arch',
         ':libraries:dstools'
+
