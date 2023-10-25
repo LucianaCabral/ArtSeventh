@@ -22,6 +22,8 @@ include ':app',
         ':core:data:hub',
         ':core:data:local',
         ':core:data:remote',
+        ':features',
+        ':features:header',
         ':libraries',
         ':libraries:arch',
         ':libraries:dstools'

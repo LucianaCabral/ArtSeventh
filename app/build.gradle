@@ -41,6 +41,8 @@ android {
 
 dependencies {
     //Modules
+    implementation project(Modules.header)
     implementation project(Modules.local)
+    implementation project(Modules.navigation)
     implementation project(Modules.remote)
 }
