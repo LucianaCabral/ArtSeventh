@@ -1,0 +1,20 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+apply from: "$rootDir/plugins/android-build.gradle"
+
+android {
+    namespace 'com.lcabral.artseventh.core.data.local'
+
+}
+dependencies {
+    // Modules
+    implementation project(Modules.archLibs)
+    implementation project(Modules.domain)
+    implementation project(Modules.navigation)
+    implementation project(Modules.remote)
+
+    // Libs
+    implementation(Libs.roomKtx)
+}

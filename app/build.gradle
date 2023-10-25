@@ -41,5 +41,6 @@ android {
 
 dependencies {
     //Modules
+    implementation project(Modules.local)
     implementation project(Modules.remote)
 }
