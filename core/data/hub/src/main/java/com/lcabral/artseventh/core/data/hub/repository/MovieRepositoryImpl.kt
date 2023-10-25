@@ -1,13 +1,16 @@
 package com.lcabral.artseventh.core.data.hub.repository
 
+import com.lcabral.artseventh.core.data.local.source.LocalDataSource
 import com.lcabral.artseventh.core.data.remote.source.RemoteDataSource
 import com.lcabral.artseventh.core.domain.model.Movie
 import com.lcabral.artseventh.core.domain.model.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
 
 internal class MovieRepositoryImpl(
-    private val remoteDataSource: RemoteDataSource
-): MovieRepository{
+    private val remoteDataSource: RemoteDataSource,
+    private val localDataSource: LocalDataSource,
+
+    ): MovieRepository{
     override fun getMovies(): Flow<List<Movie>> {
         return remoteDataSource.getMovies()
     }
@@ -26,5 +29,17 @@ internal class MovieRepositoryImpl(
 
     override fun upcoming(): Flow<List<Movie>> {
         return remoteDataSource.upcoming()
+    }
+
+    override suspend fun insertMovie(movie: Movie): Long {
+       return localDataSource.insertMovie(movie)
+    }
+
+    override fun getAll(): Flow<List<Movie>> {
+        return localDataSource.getAll()
+    }
+
+    override suspend fun delete(movie: Movie) {
+        return localDataSource.delete(movie)
     }
 }

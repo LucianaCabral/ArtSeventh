@@ -3,7 +3,7 @@ package com.lcabral.artseventh.core.data.remote.service
 import com.lcabral.artseventh.core.data.remote.model.MovieResult
 import retrofit2.http.GET
 
-internal interface MovieService {
+interface MovieService {
     @GET("/3/movie/now_playing")
     suspend fun getMovie(): MovieResult
 

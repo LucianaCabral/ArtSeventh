@@ -6,7 +6,7 @@ import com.lcabral.artseventh.libraries.arch.extensions.isDouble
 import com.lcabral.artseventh.libraries.arch.extensions.isZero
 import com.lcabral.artseventh.libraries.arch.extensions.orFalse
 
-internal data class MovieResponse(
+data class MovieResponse(
     @SerializedName("id")
     val id: Int? = null,
     @SerializedName("title")
@@ -53,6 +53,6 @@ internal data class MovieResponse(
     )
 }
 
-internal fun MovieResult.toMovie() = results.map {
+fun MovieResult.toMovie() = results.map {
     it.toMovie()
 }

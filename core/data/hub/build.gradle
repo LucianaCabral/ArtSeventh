@@ -10,6 +10,11 @@ android {
 }
 
 dependencies {
+    // Modules
     implementation project(Modules.domain)
+    implementation project(Modules.local)
     implementation project(Modules.remote)
+
+    // Libs
+    implementation(Libs.roomKtx)
 }
