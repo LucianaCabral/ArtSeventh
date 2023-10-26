@@ -18,4 +18,5 @@ dependencies {
     // Libs
     implementation(Libs.coil)
     implementation(Libs.glide)
+    implementation(Libs.retrofit)
 }
