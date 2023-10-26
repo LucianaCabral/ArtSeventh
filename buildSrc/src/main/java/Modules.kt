@@ -11,5 +11,6 @@ object Modules {
     const val remote = ":core:data:remote"
 
     // features
+    const val dashboard = ":features:dashboard"
     const val header = ":features:header"
 }

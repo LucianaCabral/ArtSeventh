@@ -27,7 +27,6 @@ class HeaderFragment : Fragment(R.layout.fragment_header) {
     }
 
     companion object {
-
         fun newInstance(): HeaderFragment = HeaderFragment()
     }
 }

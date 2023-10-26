@@ -4,6 +4,7 @@ import android.app.Application
 import com.lcabral.artseventh.core.data.local.di.LocalModule
 import com.lcabral.artseventh.core.data.remote.di.RemoteModule
 import com.lcabral.artseventh.di.MainModule.modules
+import com.lcabral.artseventh.featuresdashboard.di.DashboardModule
 import com.lcabral.artseventh.header.di.HeaderModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
@@ -29,6 +30,7 @@ class Application : Application() {
     private fun List<Module>.load() {
         loadKoinModules(
             modules = this +
+                    DashboardModule.modules +
                     HeaderModule.modules +
                     RemoteModule.modules +
                     LocalModule.modules
