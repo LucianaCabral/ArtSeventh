@@ -1,9 +1,7 @@
 package com.lcabral.artseventh.core.data.local.di
 
-
 import androidx.room.Room
-import com.lcabral.artseventh.core.data.local.database.MovieDatabase
-import org.koin.android.ext.koin.androidContext
+import com.lcabral.artseventh.core.data.local.database.MovieDataBase
 import org.koin.dsl.module
 
 object LocalModule {
@@ -11,10 +9,10 @@ object LocalModule {
         get() = listOf(dataModule)
 
     private val dataModule = module {
-        single<MovieDatabase> {
+        single<MovieDataBase> {
             Room.databaseBuilder(
-                androidContext(),
-                MovieDatabase::class.java,
+                context = get(),
+                MovieDataBase::class.java,
                 "movie.db"
             ).build()
         }

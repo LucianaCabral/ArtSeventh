@@ -44,6 +44,7 @@ dependencies {
     //Modules
     implementation project(Modules.dashboard)
     implementation project(Modules.header)
+    implementation project(Modules.hub)
     implementation project(Modules.local)
     implementation project(Modules.movies)
     implementation project(Modules.navigation)

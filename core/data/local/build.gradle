@@ -15,5 +15,6 @@ dependencies {
     implementation project(Modules.navigation)
 
     // Libs
+    api(Libs.roomRuntime)
     implementation(Libs.roomKtx)
 }

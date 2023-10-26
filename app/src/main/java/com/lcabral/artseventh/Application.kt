@@ -1,9 +1,11 @@
 package com.lcabral.artseventh
 
 import android.app.Application
+import com.lcabral.artseventh.core.data.hub.di.HubModule
 import com.lcabral.artseventh.core.data.local.di.LocalModule
 import com.lcabral.artseventh.core.data.remote.di.RemoteModule
 import com.lcabral.artseventh.di.MainModule.modules
+import com.lcabral.artseventh.features.movies.di.MoviesModule
 import com.lcabral.artseventh.featuresdashboard.di.DashboardModule
 import com.lcabral.artseventh.header.di.HeaderModule
 import org.koin.android.ext.koin.androidContext
@@ -33,7 +35,9 @@ class Application : Application() {
                     DashboardModule.modules +
                     HeaderModule.modules +
                     RemoteModule.modules +
-                    LocalModule.modules
+                    LocalModule.modules +
+                    MoviesModule.modules +
+                    HubModule.modules
         )
     }
 }
