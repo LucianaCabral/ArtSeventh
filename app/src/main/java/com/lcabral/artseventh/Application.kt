@@ -34,7 +34,6 @@ class Application : Application() {
                     HeaderModule.modules +
                     RemoteModule.modules +
                     LocalModule.modules
-
         )
     }
 }
