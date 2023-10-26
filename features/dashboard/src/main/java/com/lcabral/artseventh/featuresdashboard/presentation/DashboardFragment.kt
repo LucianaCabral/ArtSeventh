@@ -11,10 +11,12 @@ import com.lcabral.artseventh.featuresdashboard.databinding.FragmentDashboardBin
 import com.lcabral.artseventh.featuresdashboard.presentation.extensions.includeChild
 import org.koin.android.ext.android.inject
 
+
 class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
     private var _binding: FragmentDashboardBinding? = null
     private val binding get() = _binding!!
+
     private val movieNavigation: MovieNavigation by inject()
 
 
