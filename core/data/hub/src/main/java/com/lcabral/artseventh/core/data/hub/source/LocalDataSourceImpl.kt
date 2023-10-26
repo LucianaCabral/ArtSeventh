@@ -18,7 +18,7 @@ internal class LocalDataSourceImpl(
     }
 
     override fun getAll(): Flow<List<Movie>> {
-        return movieDao.getAll().map {  movieEntities ->
+        return movieDao.getAll().map { movieEntities ->
             movieEntities.map { movieEntity ->
                 movieMapper.fromEntityToDomain(movieEntity)
             }
@@ -26,7 +26,7 @@ internal class LocalDataSourceImpl(
     }
 
     override suspend fun delete(movie: Movie) {
-      val movieEntity = movieMapper.fromDomainToEntity(movie)
+        val movieEntity = movieMapper.fromDomainToEntity(movie)
         return movieDao.delete(movieEntity)
     }
 }
