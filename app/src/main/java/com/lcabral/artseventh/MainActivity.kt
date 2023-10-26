@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import com.lcabral.artseventh.core.common.navigation.DashboardNavigation
+import com.lcabral.artseventh.core.common.navigation.SearchNavigation
 import com.lcabral.artseventh.databinding.ActivityMainBinding
 import org.koin.android.ext.android.inject
 
@@ -13,6 +14,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     private lateinit var binding: ActivityMainBinding
     private val dashboardNavigation: DashboardNavigation by inject()
+    private val searchNavigation: SearchNavigation by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -47,7 +50,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     }
 
     private fun goToSearch() {
-        Toast.makeText(this, "Implementa serach  outro PR", Toast.LENGTH_SHORT).show()
+        searchNavigation.create(this)
     }
 
     private fun goToFavorite() {

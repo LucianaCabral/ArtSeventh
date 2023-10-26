@@ -18,10 +18,8 @@ dependencies {
     implementation project(Modules.hub)
 
 
-    //Libs
+    // Libs
     implementation(Libs.coil)
     implementation(Libs.glide)
-    implementation(Libs.kotlinxSerialization)
-    implementation(Libs.kotlinVersion)
 }
 
