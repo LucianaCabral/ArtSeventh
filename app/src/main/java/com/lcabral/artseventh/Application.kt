@@ -6,6 +6,7 @@ import com.lcabral.artseventh.core.data.local.di.LocalModule
 import com.lcabral.artseventh.core.data.remote.di.RemoteModule
 import com.lcabral.artseventh.di.MainModule.modules
 import com.lcabral.artseventh.features.movies.di.MoviesModule
+import com.lcabral.artseventh.features.popular.di.PopularModule
 import com.lcabral.artseventh.features.search.di.SearchDetailsModule
 import com.lcabral.artseventh.features.search.di.SearchModule
 import com.lcabral.artseventh.featuresdashboard.di.DashboardModule
@@ -41,7 +42,8 @@ class Application : Application() {
                     MoviesModule.modules +
                     HubModule.modules +
                     SearchModule.modules +
-                    SearchDetailsModule.modules
+                    SearchDetailsModule.modules +
+                    PopularModule.modules
         )
     }
 }
