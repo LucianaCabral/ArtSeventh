@@ -2,5 +2,7 @@
     <string name="app_name">ArtSeventh</string>
     <string name="art_seven_flix">ART SEVEN FLIX</string>
     <string name="splash_image">image de abertura</string>
-    <string name="favorite">Favorites</string>
+    <string name="main_favorite">Favorites</string>
+    <string name="main_search">Search</string>
+    <string name="main_home">Home</string>
 </resources>

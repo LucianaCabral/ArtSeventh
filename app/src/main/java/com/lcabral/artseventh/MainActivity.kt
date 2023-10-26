@@ -2,6 +2,7 @@ package com.lcabral.artseventh
 
 import android.graphics.Color
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import com.lcabral.artseventh.core.common.navigation.DashboardNavigation
@@ -24,5 +25,33 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 replace(R.id.container_main, dashboardNavigation.create())
             }
         }
+        setupBottomNavigation()
+    }
+
+    private fun setupBottomNavigation() {
+        binding.bottomNavigation.setOnItemSelectedListener {
+            when(it.itemId) {
+                R.id.dashboardFragment-> goToDashboard()
+                R.id.searchFragment-> goToSearch()
+                R.id.favoriteFragment -> goToFavorite()
+                else -> {}
+            }
+            true
+        }
+    }
+
+    private fun goToDashboard() {
+        supportFragmentManager.commit {
+            replace(R.id.container_main, dashboardNavigation.create())
+        }
+    }
+
+    private fun goToSearch() {
+        Toast.makeText(this, "Implementa serach  outro PR", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun goToFavorite() {
+        Toast.makeText(this, "Implementa  favorite outro PR", Toast.LENGTH_SHORT).show()
     }
 }
+
