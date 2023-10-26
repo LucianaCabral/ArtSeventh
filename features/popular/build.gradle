@@ -5,19 +5,19 @@ plugins {
 apply from: "$rootDir/plugins/android-build.gradle"
 
 android {
-    namespace 'com.lcabral.artseventh.features.search'
+    namespace 'com.lcabral.artseventh.features.popular'
 }
 
 dependencies {
 
-    // Modules
+    //Modules
     implementation project(Modules.archLibs)
+    implementation project(Modules.dsTools)
+    implementation project(Modules.domain)
     implementation project(Modules.navigation)
     implementation project(Modules.remote)
-    implementation project(Modules.dsTools)
 
     // Libs
-    implementation(Libs.coil)
-    implementation(Libs.glide)
-    implementation(Libs.retrofit)
+    implementation (Libs.glide)
+    implementation (Libs.coil)
 }
