@@ -13,4 +13,5 @@ object Modules {
     // features
     const val dashboard = ":features:dashboard"
     const val header = ":features:header"
+    const val movies = ":features:movies"
 }
