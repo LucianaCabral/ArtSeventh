@@ -49,4 +49,6 @@ dependencies {
     implementation project(Modules.movies)
     implementation project(Modules.navigation)
     implementation project(Modules.remote)
+    implementation project(Modules.search)
+    implementation project(Modules.popular)
 }

@@ -26,7 +26,8 @@ include ':app',
         ':features:dashboard',
         ':features:header',
         ':features:movies',
+        ':features:popular',
+        ':features:search',
         ':libraries',
         ':libraries:arch',
         ':libraries:dstools'
-
