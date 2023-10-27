@@ -44,6 +44,7 @@ class Application : Application() {
                     SearchModule.modules +
                     SearchDetailsModule.modules +
                     PopularModule.modules
+
         )
     }
 }

@@ -19,7 +19,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
     private val binding get() = _binding!!
 
     private val movieNavigation: MovieNavigation by inject()
-    private val popularNavigation: PopularNavigation by inject()
+    private val popularNavigation: PopularNavigation by inject(
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
