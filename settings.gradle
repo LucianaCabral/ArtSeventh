@@ -28,6 +28,8 @@ include ':app',
         ':features:movies',
         ':features:popular',
         ':features:search',
+        ':features:trendings',
         ':libraries',
         ':libraries:arch',
         ':libraries:dstools'
+
