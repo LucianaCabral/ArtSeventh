@@ -12,9 +12,12 @@ object Modules {
 
     // features
     const val dashboard = ":features:dashboard"
+    const val details= ":features:details"
     const val header = ":features:header"
     const val movies = ":features:movies"
     const val search = ":features:search"
     const val popular = ":features:popular"
     const val trending = ":features:trendings"
+    const val upcoming = ":features:upcoming"
+    const val topRated = ":features:toprated"
 }

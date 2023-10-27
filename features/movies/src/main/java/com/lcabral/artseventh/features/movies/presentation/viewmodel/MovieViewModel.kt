@@ -57,6 +57,6 @@ internal class MovieViewModel(
     }
 
     fun onAdapterItemClicked(movie: Movie) {
-       TODO()
+        _viewAction.value = MovieViewAction.GoToDetails(movie)
     }
 }

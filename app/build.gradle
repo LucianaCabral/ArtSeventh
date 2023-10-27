@@ -43,6 +43,7 @@ dependencies {
 
     //Modules
     implementation project(Modules.dashboard)
+    implementation project(Modules.details)
     implementation project(Modules.header)
     implementation project(Modules.hub)
     implementation project(Modules.local)
@@ -52,4 +53,6 @@ dependencies {
     implementation project(Modules.search)
     implementation project(Modules.popular)
     implementation project(Modules.trending)
+    implementation project(Modules.upcoming)
+    implementation project(Modules.topRated)
 }

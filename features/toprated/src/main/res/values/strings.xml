@@ -1,0 +1,11 @@
+<resources>
+    <string name="top_rated_uri_image">https://image.tmdb.org/t/p/w500</string>
+    <string name="top_rated_image_description">Image top rated</string>
+    <string name="top_rated_about_top_rated">Top Rated</string>
+    <string name="top_rated_image_top_rated">Image top rated</string>
+    <string name="_about_top_rated">About Top Rated</string>
+    <string name="top_rated_overview">Overview</string>
+    <string name="top_rated_vote_count">Vote: %s</string>
+    <string name="top_rated_vote_average">Vote average: %s</string>
+    <string name="top_rated_release">Release: %s</string>
+</resources>
