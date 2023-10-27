@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="details_line_view">#4F908A</color>
+    <color name="details_title_view">#009688</color>
+    <color name="details_border">#4F908A</color>
+    <color name="details_chip">#A29D9D</color>
+</resources>
