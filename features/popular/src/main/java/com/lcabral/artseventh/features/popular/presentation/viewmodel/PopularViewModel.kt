@@ -56,6 +56,6 @@ internal class PopularViewModel(
     }
 
     fun onAdapterItemClicked(popular: Movie) {
-       TODO()
+      _viewAction.value = PopularViewAction.GoToDetails(popular)
     }
 }

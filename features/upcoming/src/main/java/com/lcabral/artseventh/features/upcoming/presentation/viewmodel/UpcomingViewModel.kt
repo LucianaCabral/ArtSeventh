@@ -51,6 +51,7 @@ internal class UpcomingViewModel(
     }
 
     fun onAdapterItemClicked(movie: Movie) {
-       // ODO()
+        _viewAction.value = UpcomingViewAction.GoToDetails(movie)
+
     }
 }

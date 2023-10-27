@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.lcabral.artseventh.core.common.navigation.DetailsNavigation
+import com.lcabral.artseventh.core.common.navigation.MovieArgs
 import com.lcabral.artseventh.core.domain.model.Movie
 import com.lcabral.artseventh.features.movies.R
 import com.lcabral.artseventh.features.movies.databinding.FragmentMovieBinding
@@ -15,6 +17,7 @@ import com.lcabral.artseventh.features.movies.presentation.adapter.MovieAdapter
 import com.lcabral.artseventh.features.movies.presentation.viewmodel.MovieViewAction
 import com.lcabral.artseventh.features.movies.presentation.viewmodel.MovieViewModel
 import com.lcabral.artseventh.libraries.arch.extensions.showError
+import org.koin.android.ext.android.inject
 
 internal class MovieFragment : Fragment(R.layout.fragment_movie) {
 
@@ -22,6 +25,8 @@ internal class MovieFragment : Fragment(R.layout.fragment_movie) {
     private val binding get() = _binding!!
     private val viewModel: MovieViewModel by viewModel()
     private val movieAdapter by lazy { MovieAdapter { viewModel.onAdapterItemClicked(it) } }
+    private val detailsNavigation: DetailsNavigation by inject()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -51,6 +56,7 @@ internal class MovieFragment : Fragment(R.layout.fragment_movie) {
         viewModel.viewAction.observe(viewLifecycleOwner) { action ->
             when (action) {
                 MovieViewAction.ShowError -> showError()
+                is MovieViewAction.GoToDetails -> goToMoviesDetails(action.movie)
             }
         }
     }
@@ -70,6 +76,26 @@ internal class MovieFragment : Fragment(R.layout.fragment_movie) {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
+    }
+
+    private fun goToMoviesDetails(movie: Movie) {
+        detailsNavigation.showDetails(
+            requireContext(), MovieArgs(
+                id = movie.id,
+                adult = movie.adult,
+                backdropPath = movie.backdropPath,
+                originalLanguage = movie.originalLanguage,
+                originalTitle = movie.originalTitle,
+                name = movie.name,
+                overview = movie.overview,
+                posterPath = movie.posterPath,
+                release = movie.release,
+                voteAverage = movie.voteAverage,
+                voteCount = movie.voteCount,
+                video = movie.video,
+                popularity = movie.popularity
+            )
+        )
     }
 
     companion object {
