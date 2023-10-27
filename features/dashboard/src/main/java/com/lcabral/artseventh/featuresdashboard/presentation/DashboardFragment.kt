@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.lcabral.artseventh.core.common.navigation.MovieNavigation
 import com.lcabral.artseventh.core.common.navigation.PopularNavigation
 import com.lcabral.artseventh.core.common.navigation.TrendingNavigation
+import com.lcabral.artseventh.core.common.navigation.UpcomingNavigation
 import com.lcabral.artseventh.featuresdashboard.R
 import com.lcabral.artseventh.featuresdashboard.databinding.FragmentDashboardBinding
 import com.lcabral.artseventh.featuresdashboard.presentation.extensions.includeChild
@@ -22,6 +23,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
     private val movieNavigation: MovieNavigation by inject()
     private val popularNavigation: PopularNavigation by inject()
     private val trendingNavigation: TrendingNavigation by inject()
+    private val upcomingNavigation: UpcomingNavigation by inject()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
@@ -29,7 +31,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
                 includeChild(movieContainer.id,movieNavigation.create() )
                 includeChild(popularContainer.id, popularNavigation.navigateToPopular())
                 includeChild(trendingContainer.id, trendingNavigation.navigateToTrending())
-
+                includeChild(upcomingContainer.id, upcomingNavigation.navigateToUpcoming())
             }
         }
     }
