@@ -9,6 +9,7 @@ import com.lcabral.artseventh.features.movies.di.MoviesModule
 import com.lcabral.artseventh.features.popular.di.PopularModule
 import com.lcabral.artseventh.features.search.di.SearchDetailsModule
 import com.lcabral.artseventh.features.search.di.SearchModule
+import com.lcabral.artseventh.features.toprated.di.TopRatedModule
 import com.lcabral.artseventh.features.trendings.di.TrendingModule
 import com.lcabral.artseventh.features.upcoming.di.UpcomingModule
 import com.lcabral.artseventh.featuresdashboard.di.DashboardModule
@@ -47,7 +48,8 @@ class Application : Application() {
                     SearchDetailsModule.modules +
                     PopularModule.modules +
                     TrendingModule.modules +
-                    UpcomingModule.modules
+                    UpcomingModule.modules +
+                    TopRatedModule.modules
         )
     }
 }
