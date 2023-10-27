@@ -1,5 +1,0 @@
-<resources>
-    <string name="trending_title_carousel">Trendings</string>
-    <string name="trending_about_trendings">About Trendings</string>
-    <string name="movie_uri_image">https://image.tmdb.org/t/p/w500</string>
-</resources>
