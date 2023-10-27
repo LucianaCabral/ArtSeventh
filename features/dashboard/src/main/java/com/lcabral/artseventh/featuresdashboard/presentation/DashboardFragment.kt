@@ -29,6 +29,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
                 includeChild(movieContainer.id,movieNavigation.create() )
                 includeChild(popularContainer.id, popularNavigation.navigateToPopular())
                 includeChild(trendingContainer.id, trendingNavigation.navigateToTrending())
+
             }
         }
     }
