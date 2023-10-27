@@ -50,7 +50,8 @@ internal class TrendingViewModel(
     }
 
     fun onAdapterItemClicked(movie: Movie) {
-        TODO()
+        _viewAction.value = ViewAction.GoToDetails(movie)
+
     }
 }
 
