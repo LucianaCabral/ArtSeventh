@@ -9,6 +9,7 @@ import com.lcabral.artseventh.features.movies.di.MoviesModule
 import com.lcabral.artseventh.features.popular.di.PopularModule
 import com.lcabral.artseventh.features.search.di.SearchDetailsModule
 import com.lcabral.artseventh.features.search.di.SearchModule
+import com.lcabral.artseventh.features.trendings.di.TrendingModule
 import com.lcabral.artseventh.featuresdashboard.di.DashboardModule
 import com.lcabral.artseventh.header.di.HeaderModule
 import org.koin.android.ext.koin.androidContext
@@ -43,8 +44,8 @@ class Application : Application() {
                     HubModule.modules +
                     SearchModule.modules +
                     SearchDetailsModule.modules +
-                    PopularModule.modules
-
+                    PopularModule.modules +
+                    TrendingModule.modules
         )
     }
 }
