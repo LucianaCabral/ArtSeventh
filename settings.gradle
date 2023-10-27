@@ -31,4 +31,5 @@ include ':app',
         ':features:trendings',
         ':libraries',
         ':libraries:arch',
-        ':libraries:dstools'
+        ':libraries:dstools',
+        ':features:upcoming'

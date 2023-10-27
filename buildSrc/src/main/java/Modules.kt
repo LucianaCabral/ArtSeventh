@@ -17,4 +17,5 @@ object Modules {
     const val search = ":features:search"
     const val popular = ":features:popular"
     const val trending = ":features:trendings"
+    const val upcoming = ":features:upcoming"
 }
