@@ -24,6 +24,7 @@ include ':app',
         ':core:data:remote',
         ':features',
         ':features:dashboard',
+        ':features:details',
         ':features:header',
         ':features:movies',
         ':features:popular',
@@ -34,4 +35,3 @@ include ':app',
         ':libraries:dstools',
         ':features:toprated',
         ':features:upcoming'
-
