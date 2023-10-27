@@ -17,7 +17,6 @@
     <string name="no_have">No</string>
     <string name="movie_more_details_about_movies">More details about movies</string>
     <string name="movie_uri_image">https://image.tmdb.org/t/p/w500</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ds_dialog_title_feedback_error">Opa! Ocorreu um erro</string>
     <string name="ds_dialog_feedback_message_error">Aguarde</string>
