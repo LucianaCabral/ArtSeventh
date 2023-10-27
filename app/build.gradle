@@ -51,4 +51,5 @@ dependencies {
     implementation project(Modules.remote)
     implementation project(Modules.search)
     implementation project(Modules.popular)
+    implementation project(Modules.trending)
 }

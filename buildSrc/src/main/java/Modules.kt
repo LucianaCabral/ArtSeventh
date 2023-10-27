@@ -15,5 +15,6 @@ object Modules {
     const val header = ":features:header"
     const val movies = ":features:movies"
     const val search = ":features:search"
-    const val popular= ":features:popular"
+    const val popular = ":features:popular"
+    const val trending = ":features:trendings"
 }
