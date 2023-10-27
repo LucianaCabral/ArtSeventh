@@ -53,6 +53,6 @@ internal class TopRatedViewModel(
     }
 
     fun onAdapterItemClicked(topRated: Movie) {
-        //TODO()
+        _viewAction.value = TopRatedAction.GoToDetails(topRated)
     }
 }
