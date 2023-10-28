@@ -1,0 +1,17 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+apply from: "$rootDir/plugins/android-build.gradle"
+
+android {
+    namespace 'com.lcabral.artseventh.features.favorites'
+}
+
+dependencies {
+
+    //Modules
+    implementation project(Modules.archLibs)
+    implementation project(Modules.dsTools)
+    implementation project(Modules.navigation)
+}
