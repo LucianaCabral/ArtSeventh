@@ -16,5 +16,4 @@ dependencies {
     implementation project(Modules.remote)
 
     // Libs
-    implementation(Libs.roomKtx)
 }
