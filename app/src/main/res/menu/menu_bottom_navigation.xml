@@ -6,21 +6,21 @@
         android:id="@+id/dashboardFragment"
         android:enabled="true"
         android:icon="@drawable/ic_home_"
-        android:title=""
+        android:title="@string/app_bottom_navigation_home"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/searchFragment"
         android:enabled="true"
         android:icon="@drawable/ic_search"
-        android:title=""
-        app:showAsAction="ifRoom" />
+        android:title="@string/app_bottom_navigation_search"
+        app:showAsAction="collapseActionView" />
 
     <item
         android:id="@+id/favoriteFragment"
         android:enabled="true"
         android:icon="@drawable/ic_favorite"
-        android:title=""
+        android:title="@string/app_bottom_navigation_favorites"
         app:showAsAction="ifRoom" />
 
 </menu>

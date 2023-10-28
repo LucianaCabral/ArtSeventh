@@ -37,7 +37,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 R.id.dashboardFragment-> goToDashboard()
                 R.id.searchFragment-> goToSearch()
                 R.id.favoriteFragment -> goToFavorite()
-                else -> {}
             }
             true
         }

@@ -5,4 +5,7 @@
     <string name="main_favorite">Favorites</string>
     <string name="main_search">Search</string>
     <string name="main_home">Home</string>
-    </resources>
+    <string name="app_bottom_navigation_favorites">Favorites</string>
+    <string name="app_bottom_navigation_search">Search</string>
+    <string name="app_bottom_navigation_home">Home</string>
+</resources>
