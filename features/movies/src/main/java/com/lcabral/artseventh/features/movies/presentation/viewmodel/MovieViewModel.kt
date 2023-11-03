@@ -17,7 +17,8 @@ import kotlinx.coroutines.launch
 internal class MovieViewModel(
     private val movieUseCase: GetMovieUseCase,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
-) : ViewModel() {
+
+    ) : ViewModel() {
 
     private val _viewState: MutableLiveData<MovieStateView> = MutableLiveData<MovieStateView>()
     val viewState: LiveData<MovieStateView> = _viewState

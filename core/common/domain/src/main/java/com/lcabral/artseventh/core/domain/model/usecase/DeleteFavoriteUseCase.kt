@@ -8,6 +8,6 @@ class DeleteFavoriteUseCase(
 ) {
 
     suspend operator fun invoke(movie: Movie) {
-        repository.delete(movie)
+        repository.deleteFavorite(movie)
     }
 }

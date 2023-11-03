@@ -7,6 +7,6 @@ class SetFavoriteUseCase(
     private val repository: MovieRepository,
 ) {
     suspend operator fun invoke(movie:Movie): Long {
-        return repository.insertMovie(movie)
+        return repository.setFavorite(movie)
     }
 }

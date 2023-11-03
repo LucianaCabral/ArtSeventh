@@ -46,4 +46,26 @@ class MovieLocalMapper {
             )
         }
     }
+
+    fun List<MovieEntity>.toMovies(): List<Movie> {
+        return map { it.toMovie() }
+    }
+
+    fun MovieEntity.toMovie(): Movie {
+        return Movie(
+            id = id.isZero(),
+            adult = adult.orFalse(),
+            backdropPath = backdropPath.orEmpty(),
+            name = name.orEmpty(),
+            overview = overview.orEmpty(),
+            originalLanguage = originalLanguage.orEmpty(),
+            originalTitle = originalTitle.orEmpty(),
+            posterPath = posterPath.orEmpty(),
+            popularity = popularity.isDouble(),
+            release = release.orEmpty(),
+            voteAverage = voteAverage.isDouble(),
+            voteCount = voteCount.isZero(),
+            video = video.orFalse()
+        )
+    }
 }

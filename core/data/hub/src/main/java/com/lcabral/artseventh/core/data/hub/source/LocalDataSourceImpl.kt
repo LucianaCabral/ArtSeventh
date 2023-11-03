@@ -4,29 +4,34 @@ import com.lcabral.artseventh.core.data.local.database.MovieDao
 import com.lcabral.artseventh.core.data.local.mapper.MovieLocalMapper
 import com.lcabral.artseventh.core.data.local.source.LocalDataSource
 import com.lcabral.artseventh.core.domain.model.Movie
+import com.lcabral.artseventh.libraries.arch.extensions.isNotNull
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 internal class LocalDataSourceImpl(
     private val movieMapper: MovieLocalMapper,
-    private val movieDao: MovieDao
+    private val movieDao: MovieDao,
 ) : LocalDataSource {
 
-    override suspend fun insertMovie(movie: Movie): Long {
+    override suspend fun setFavorite(movie: Movie): Long {
         val movieEntity = movieMapper.fromDomainToEntity(movie)
-        return movieDao.insert(movieEntity)
+        return movieDao.setFavorite(movieEntity)
     }
 
-    override fun getAll(): Flow<List<Movie>> {
-        return movieDao.getAll().map { movieEntities ->
+    override suspend fun isFavorite(id: Int): Boolean {
+           return movieDao.getFavorite(id).isNotNull()
+    }
+
+    override fun getFavorites(): Flow<List<Movie>> {
+        return movieDao.getFavorites().map { movieEntities ->
             movieEntities.map { movieEntity ->
                 movieMapper.fromEntityToDomain(movieEntity)
             }
         }
     }
 
-    override suspend fun delete(movie: Movie) {
+    override suspend fun deleteFavorite(movie: Movie) {
         val movieEntity = movieMapper.fromDomainToEntity(movie)
-        return movieDao.delete(movieEntity)
+        return movieDao.deleteFavorite(movieEntity)
     }
 }

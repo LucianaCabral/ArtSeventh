@@ -14,6 +14,9 @@ interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun setFavorite(movieEntity: MovieEntity): Long
 
+    @Query("SELECT * FROM movies WHERE id = :id")
+    suspend fun getFavorite(id:Int): MovieEntity
+
     //nao uso suspend pq ele já suspend  é automaticamente já que é flow
     //  STREAM OF DATA - exibe todos os filmes por id -
     @Query("SELECT * FROM movies ORDER BY id")

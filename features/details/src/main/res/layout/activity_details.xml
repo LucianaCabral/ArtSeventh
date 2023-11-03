@@ -47,10 +47,11 @@
                 tools:strokeColor="#4CAF50" />
 
             <CheckBox
-                android:id="@+id/image_add_favorite"
+                android:id="@+id/add_favorite_checkbox"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:button="@drawable/ic_favorite"
+                android:button="@drawable/ic_favorite_border"
+                android:focusableInTouchMode="true"
                 android:layout_marginEnd="@dimen/dimen_16"
                 android:layout_marginTop="@dimen/dimen_16"
                 android:layout_marginBottom="@dimen/dimen_16"

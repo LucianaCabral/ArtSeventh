@@ -4,7 +4,9 @@ import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast.*
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import coil.load
 import com.lcabral.arch.lib.extensions.onBackPressedHandleFragmentActivity
 import com.lcabral.artseventh.core.common.navigation.MovieArgs
@@ -42,6 +44,24 @@ internal class DetailsActivity : AppCompatActivity(R.layout.activity_details) {
         viewModel.viewAction.observe(this) { action ->
             when (action) {
                 ViewAction.NavigateBack -> finish()
+                is ViewAction.SaveToFavorite ->onCheckboxClicked2()
+                ViewAction.FavoriteClicked ->  onCheckboxClicked2()
+                ViewAction.GoToDetails ->  makeText(this@DetailsActivity, "Marcado", LENGTH_SHORT).show()
+            }
+        }
+    }
+
+
+    private fun onCheckboxClicked2() {
+        with(binding) {
+            addFavoriteCheckbox.setOnCheckedChangeListener { _, isChecked -> isChecked
+                if (addFavoriteCheckbox.isChecked) {
+                    makeText(this@DetailsActivity, "Marcado", LENGTH_SHORT).show()
+                    addFavoriteCheckbox.buttonDrawable?.colorFilter.apply {
+                        ContextCompat.getColor(applicationContext, com.lcabral.artseventh.libraries.dstools.R.color.red) }
+                } else {
+                    makeText(this@DetailsActivity, "Desmarcado", LENGTH_SHORT).show()
+                }
             }
         }
     }
@@ -54,6 +74,9 @@ internal class DetailsActivity : AppCompatActivity(R.layout.activity_details) {
     private fun setupListeners() = with(binding) {
         detailsToolbar.setNavigationOnClickListener {
             viewModel.onBackPressed()
+        }
+        addFavoriteCheckbox.setOnClickListener {
+            viewModel.onFavoriteClicked()
         }
     }
 

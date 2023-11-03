@@ -12,6 +12,8 @@ dependencies {
     //Modules
     implementation project(Modules.archLibs)
     implementation project(Modules.dsTools)
+//    implementation project(Modules.domain)
+//    implementation project(Modules.local)
     implementation project(Modules.navigation)
 
     // Libs
