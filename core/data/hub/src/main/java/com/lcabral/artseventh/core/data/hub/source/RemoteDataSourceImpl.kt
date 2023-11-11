@@ -41,4 +41,10 @@ internal class RemoteDataSourceImpl(
             emit(service.getUpcoming().toMovie())
         }
     }
+
+    override fun getDetails(): Flow<List<Movie>> {
+        return flow {
+            emit(service.getDetails().toMovie())
+        }
+    }
 }

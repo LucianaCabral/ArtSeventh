@@ -12,25 +12,20 @@ internal class LocalDataSourceImpl(
     private val movieMapper: MovieLocalMapper,
     private val movieDao: MovieDao,
 ) : LocalDataSource {
-
-    override suspend fun setFavorite(movie: Movie): Long {
+    override suspend fun addToFavorite(movie: Movie) {
         val movieEntity = movieMapper.fromDomainToEntity(movie)
-        return movieDao.setFavorite(movieEntity)
+        return movieDao.insertFavorite(movieEntity)
     }
 
-    override suspend fun isFavorite(id: Int): Boolean {
-           return movieDao.getFavorite(id).isNotNull()
-    }
-
-    override fun getFavorites(): Flow<List<Movie>> {
-        return movieDao.getFavorites().map { movieEntities ->
+    override fun getFavoritesMovies(): Flow<List<Movie>> {
+        return movieDao.getAllFavorites().map { movieEntities ->
             movieEntities.map { movieEntity ->
                 movieMapper.fromEntityToDomain(movieEntity)
             }
         }
     }
 
-    override suspend fun deleteFavorite(movie: Movie) {
+    override suspend fun deleteFromFavorite(movie: Movie) {
         val movieEntity = movieMapper.fromDomainToEntity(movie)
         return movieDao.deleteFavorite(movieEntity)
     }

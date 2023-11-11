@@ -5,7 +5,8 @@ import androidx.recyclerview.widget.ListAdapter
 import com.lcabral.artseventh.core.domain.model.Movie
 
 internal class MovieAdapter(
-    private val itemClicked: MovieItemClicked
+    private val itemClicked: MovieItemClicked,
+//    private val favoriteClicked: FavoriteItemClicked
 ) : ListAdapter<Movie, MovieViewHolder>(MovieDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {

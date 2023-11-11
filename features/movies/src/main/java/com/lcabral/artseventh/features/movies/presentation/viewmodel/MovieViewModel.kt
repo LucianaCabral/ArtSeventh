@@ -6,6 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lcabral.artseventh.core.domain.model.Movie
+import com.lcabral.artseventh.core.domain.model.usecase.SaveFavoriteMovieUseCase
+import com.lcabral.artseventh.core.domain.model.usecase.DeleteFavoriteUseCase
+import com.lcabral.artseventh.core.domain.model.usecase.GetFavoriteMoviesUseCase
 import com.lcabral.artseventh.core.domain.model.usecase.GetMovieUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -16,6 +19,9 @@ import kotlinx.coroutines.launch
 
 internal class MovieViewModel(
     private val movieUseCase: GetMovieUseCase,
+    private val saveFavoriteUseCase: SaveFavoriteMovieUseCase,
+    private val deleteFavoriteUseCase: DeleteFavoriteUseCase,
+    private val getFavoriteUseCase: GetFavoriteMoviesUseCase,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 
     ) : ViewModel() {
@@ -28,6 +34,7 @@ internal class MovieViewModel(
 
     init {
         getMovies()
+        getFavoriteMovies()
     }
 
     private fun getMovies() {
@@ -40,6 +47,7 @@ internal class MovieViewModel(
         }
     }
 
+
     private fun handleLoading() {
         MovieStateView(flipperChild = LOADING_CHILD, getMoviesResultItems = null)
     }
@@ -50,11 +58,30 @@ internal class MovieViewModel(
     }
 
     private fun handleMoviesSuccess(movieResults: List<Movie>) {
-        Log.d("<L>", "MovieSuccess:${movieResults} ")
+//        Log.d("<L>", "MovieSuccess:${movieResults} ")
         _viewState.value = MovieStateView(
             flipperChild = SUCCESS_CHILD,
             getMoviesResultItems = movieResults
         )
+    }
+
+    private fun getFavoriteMovies() {
+        viewModelScope.launch {
+            getFavoriteUseCase()
+        }
+    }
+
+    fun onFavoriteClicked(movie: Movie) {
+        viewModelScope.launch {
+            movie.isFavorite = movie.isFavorite
+            if (movie.isFavorite) {
+                saveFavoriteUseCase(movie)
+                _viewAction.value = MovieViewAction.SaveFavorite(movie)
+                Log.d("<L>", "onFavoriteClickedFromMovie:$movie ")
+            } else {
+                deleteFavoriteUseCase(movie)
+            }
+        }
     }
 
     fun onAdapterItemClicked(movie: Movie) {

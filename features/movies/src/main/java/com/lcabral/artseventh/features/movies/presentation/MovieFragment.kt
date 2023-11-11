@@ -27,7 +27,6 @@ internal class MovieFragment : Fragment(R.layout.fragment_movie) {
     private val movieAdapter by lazy { MovieAdapter { viewModel.onAdapterItemClicked(it) } }
     private val detailsNavigation: DetailsNavigation by inject()
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -42,6 +41,7 @@ internal class MovieFragment : Fragment(R.layout.fragment_movie) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupRecyclerView()
         setupObservers()
     }
@@ -57,6 +57,7 @@ internal class MovieFragment : Fragment(R.layout.fragment_movie) {
             when (action) {
                 MovieViewAction.ShowError -> showError()
                 is MovieViewAction.GoToDetails -> goToMoviesDetails(action.movie)
+                is MovieViewAction.SaveFavorite -> viewModel.onFavoriteClicked(action.movie)
             }
         }
     }
@@ -93,7 +94,8 @@ internal class MovieFragment : Fragment(R.layout.fragment_movie) {
                 voteAverage = movie.voteAverage,
                 voteCount = movie.voteCount,
                 video = movie.video,
-                popularity = movie.popularity
+                popularity = movie.popularity,
+                isFavorite = movie.isFavorite
             )
         )
     }

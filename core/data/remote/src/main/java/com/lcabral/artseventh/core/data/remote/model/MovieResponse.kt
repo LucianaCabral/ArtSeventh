@@ -33,7 +33,7 @@ data class MovieResponse(
     val voteAverage: Double? = null,
     @SerializedName("vote_count")
     val voteCount: Int? = null,
-
+    var isFavorite: Boolean = false
     ) {
 
     fun toMovie() = Movie(
@@ -49,7 +49,8 @@ data class MovieResponse(
         voteCount = voteCount.isZero(),
         adult = adult.orFalse(),
         overview = overview.orEmpty(),
-        video = video.orFalse()
+        video = video.orFalse(),
+        isFavorite = isFavorite.orFalse()
     )
 }
 

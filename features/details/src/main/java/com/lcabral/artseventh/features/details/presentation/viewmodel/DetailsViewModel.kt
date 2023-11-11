@@ -3,39 +3,56 @@ package com.lcabral.artseventh.features.details.presentation.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.lcabral.artseventh.core.domain.model.usecase.SetFavoriteUseCase
-import kotlinx.coroutines.launch
+
+import com.lcabral.artseventh.core.domain.model.usecase.DeleteFavoriteUseCase
+import com.lcabral.artseventh.core.domain.model.usecase.GetFavoriteMoviesUseCase
+import com.lcabral.artseventh.core.domain.model.usecase.SaveFavoriteMovieUseCase
+import com.lcabral.artseventh.core.domain.model.usecase.GetDetailsUseCase
+
+private const val ARGS_MOVIE = "argsMovie"
 
 internal class DetailsViewModel(
-    private val addMovieUseCase: SetFavoriteUseCase
-) : ViewModel() {
 
-    private val _viewAction: MutableLiveData<ViewAction> = MutableLiveData<ViewAction>()
-    private val _viewState: MutableLiveData<ViewState> = MutableLiveData<ViewState>()
+    private val getDetailsUseCase: GetDetailsUseCase,
+    private val getFavoritesUseCase: GetFavoriteMoviesUseCase,
+    private val addFavoriteMovieUseCase: SaveFavoriteMovieUseCase,
+    private val deleteFavoriteUseCase: DeleteFavoriteUseCase,
 
-    val viewAction: LiveData<ViewAction> = _viewAction
-    val viewState: LiveData<ViewState> = _viewState
+    ) : ViewModel() {
+
+    private val _viewAction: MutableLiveData<DetailViewAction> = MutableLiveData<DetailViewAction>()
+    private val _viewState: MutableLiveData<DetailViewState> = MutableLiveData<DetailViewState>()
+
+    val viewAction: LiveData<DetailViewAction> = _viewAction
+    val viewState: LiveData<DetailViewState> = _viewState
 
 
+//    init {
+//        getDetails()
+//    }
     fun onBackPressed() {
-        _viewAction.value = ViewAction.NavigateBack
+        _viewAction.value = DetailViewAction.NavigateBack
     }
 
-    private fun insertMovie() = viewModelScope.launch {
-        _viewAction.value = ViewAction.FavoriteClicked
-
+    private fun getMovieDetailFailure(message: String?) {
+        _viewState.value = DetailViewState(errorMessage = message)
     }
 
-    fun onFavoriteClicked() {
-        _viewAction.value = ViewAction.FavoriteClicked
-    }
+//    fun onGetFavoritesMovies() =
+//        viewModelScope.launch {
+//            runCatching {
+//            }
+//        }
 
-    fun onSaveTOFavorite(isSuccess: Boolean) {
-        val message = if (isSuccess) {
-            " "
-        } else " "
-        _viewAction.value = ViewAction.SaveToFavorite(movie = 11)
-    }
+//    fun onAddFavoriteMovie(movie:Movie) =
+//        viewModelScope.launch {
+//            movie?.let { addFavoriteMovieUseCase.invoke(it) }
+//            println("movie = $movie")
+//        }
+//        viewModelScope.launch {
+//            println("<Lo> ${addFavoriteMovieUseCase(movie = movie)}")
+//            addFavoriteMovieUseCase(movie = movie)
+//        }
+
 }
 

@@ -15,4 +15,5 @@
     <string name="details_image_uri">https://image.tmdb.org/t/p/w500</string>
     <string name="details_answer_yes">Yes</string>
     <string name="details_answer_not">No</string>
+    <string name="details_heart_icon">heart_icon</string>
 </resources>

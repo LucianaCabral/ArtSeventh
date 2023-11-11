@@ -5,5 +5,6 @@ import com.lcabral.artseventh.core.domain.model.Movie
 internal data class FavoriteViewState(
     val isFavoriteChecked:Boolean = true,
     val isLoading:Boolean = false,
-    val movies:List<Movie> = emptyList()
+    val getFavoritesMovies:List<Movie> = emptyList(),
+    var errorMessage: String? = null
 )

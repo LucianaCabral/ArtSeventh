@@ -22,7 +22,8 @@ class MovieLocalMapper {
                 release = release.orEmpty(),
                 voteAverage = voteAverage.isDouble(),
                 voteCount = voteCount.isZero(),
-                video = video.orFalse()
+                video = video.orFalse(),
+                isFavorite = isFavorite.orFalse()
             )
         }
     }
@@ -42,7 +43,8 @@ class MovieLocalMapper {
                 release = release,
                 voteAverage = voteAverage,
                 voteCount = voteCount,
-                video = video
+                video = video,
+                isFavorite = isFavorite
             )
         }
     }
@@ -65,7 +67,8 @@ class MovieLocalMapper {
             release = release.orEmpty(),
             voteAverage = voteAverage.isDouble(),
             voteCount = voteCount.isZero(),
-            video = video.orFalse()
+            video = video.orFalse(),
+            isFavorite = isFavorite.orFalse()
         )
     }
 }

@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 interface MovieDao {
     // recebe um parametro, enytao pode receber um long
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun setFavorite(movieEntity: MovieEntity): Long
+    suspend fun insertFavorite(movieEntity: MovieEntity)
 
     @Query("SELECT * FROM movies WHERE id = :id")
     suspend fun getFavorite(id:Int): MovieEntity
@@ -20,7 +20,7 @@ interface MovieDao {
     //nao uso suspend pq ele já suspend  é automaticamente já que é flow
     //  STREAM OF DATA - exibe todos os filmes por id -
     @Query("SELECT * FROM movies ORDER BY id")
-    fun getFavorites(): Flow<List<MovieEntity>>
+    fun getAllFavorites(): Flow<List<MovieEntity>>
 
     @Delete
     suspend fun deleteFavorite(movieEntity: MovieEntity)

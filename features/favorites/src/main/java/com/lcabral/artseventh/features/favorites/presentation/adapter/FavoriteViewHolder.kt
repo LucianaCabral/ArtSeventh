@@ -5,34 +5,36 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.lcabral.artseventh.core.domain.model.Movie
-import com.lcabral.artseventh.features.favorites.databinding.ItemMovieBinding
+import com.lcabral.artseventh.features.favorites.databinding.FavoriteItemBinding
 
 internal typealias FavoriteItemClicked = (Movie) -> Unit
-
 internal class FavoriteViewHolder(
-    private val binding: ItemMovieBinding,
+    private val binding: FavoriteItemBinding,
     private val itemClicked: FavoriteItemClicked
 ) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bindView(movie: Movie) {
-        itemView.apply {
-            with(binding) {
-                favoriteTv.text = movie.name
-                Glide.with(itemView.context)
-                    .load(context.getString(com.lcabral.artseventh.libraries.dstools.R.string.movie_uri_image) + movie.posterPath).into(favoriteImage)
+        binding.apply {
+            favoriteTv.text = movie.name
+            Glide.with(itemView.context)
+                .load(itemView.context.getString(com.lcabral.artseventh.libraries.dstools.R.string.movie_uri_image) + movie.posterPath)
+                .into(imageFavorite)
+            checkFavorite.isChecked = movie.isFavorite
+
+            itemView.setOnClickListener {
+                itemClicked(movie)
             }
-        }
-        itemView.setOnClickListener {
-            itemClicked(movie)
+            checkFavorite.setOnClickListener {
+                movie.isFavorite = checkFavorite.isChecked
+            }
         }
     }
 
     companion object {
         fun create(parent: ViewGroup, itemClicked: FavoriteItemClicked): FavoriteViewHolder {
             val inflater = LayoutInflater.from(parent.context)
-            val binding = ItemMovieBinding
-                .inflate(inflater, parent, false)
+            val binding = FavoriteItemBinding.inflate(inflater, parent, false)
             return FavoriteViewHolder(binding, itemClicked)
         }
     }

@@ -30,19 +30,19 @@ internal class MovieRepositoryImpl(
         return remoteDataSource.upcoming()
     }
 
-    override suspend fun setFavorite(movie: Movie): Long {
-       return localDataSource.setFavorite(movie)
+    override suspend fun addToFavorites(movie: Movie){
+       return localDataSource.addToFavorite(movie)
     }
 
-    override suspend fun isFavorite(id: Int): Boolean {
-        return localDataSource.isFavorite(id)
-    }
-
-    override fun getFavorites(): Flow<List<Movie>> {
-        return localDataSource.getFavorites()
+    override fun getAllFavorites(): Flow<List<Movie>> {
+        return localDataSource.getFavoritesMovies()
     }
 
     override suspend fun deleteFavorite(movie: Movie) {
-        return localDataSource.deleteFavorite(movie)
+        return localDataSource.deleteFromFavorite(movie)
+    }
+
+    override fun getDetails() : Flow<List<Movie>> {
+       return remoteDataSource.getDetails()
     }
 }

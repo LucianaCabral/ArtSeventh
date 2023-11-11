@@ -98,7 +98,9 @@ internal class UpComingFragment : Fragment(R.layout.fragment_up_coming) {
                 voteAverage = movie.voteAverage,
                 voteCount = movie.voteCount,
                 video = movie.video,
-                popularity = movie.popularity)
+                popularity = movie.popularity,
+                isFavorite = movie.isFavorite,
+            )
         )
     }
 

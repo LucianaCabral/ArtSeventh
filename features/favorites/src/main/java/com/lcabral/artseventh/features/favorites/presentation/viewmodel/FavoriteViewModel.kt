@@ -1,15 +1,13 @@
 package com.lcabral.artseventh.features.favorites.presentation.viewmodel
 
-import androidx.constraintlayout.motion.utils.ViewState
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lcabral.artseventh.core.domain.model.Movie
 import com.lcabral.artseventh.core.domain.model.usecase.DeleteFavoriteUseCase
-import com.lcabral.artseventh.core.domain.model.usecase.GetFavoritesUseCase
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
+import com.lcabral.artseventh.core.domain.model.usecase.GetFavoriteMoviesUseCase
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onCompletion
@@ -18,46 +16,49 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 internal class FavoriteViewModel(
-    private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
-    private val getFavoritesUseCase: GetFavoritesUseCase,
-    private val deleteFavoriteUseCase: DeleteFavoriteUseCase
+    private val getFavoritesUseCase: GetFavoriteMoviesUseCase,
+    private val deleteFavoriteUseCase: DeleteFavoriteUseCase,
+) : ViewModel() {
 
-    ) : ViewModel() {
+    private val movie: Movie? = null
 
-    private val _viewState: MutableLiveData<ViewState> = MutableLiveData<ViewState>()
-    val viewState: LiveData<ViewState> = _viewState
+    private val _viewState: MutableLiveData<FavoriteViewState> =
+        MutableLiveData<FavoriteViewState>()
+    val viewState: LiveData<FavoriteViewState> = _viewState
 
+    private val _viewAction: MutableLiveData<FavoriteViewAction> =
+        MutableLiveData<FavoriteViewAction>()
+    val viewAction: LiveData<FavoriteViewAction> = _viewAction
 
-    private val _viewAction: MutableLiveData<ViewAction> = MutableLiveData<ViewAction>()
-    val viewAction: LiveData<ViewAction> = _viewAction
+    init {
+        getMovies()
+
+    }
 
     private fun getMovies() {
-        getFavoritesUseCase()
-            .onStart {  }
-            .onCompletion {  }
-            .onEach {  }
-            .catch {  }
-            .launchIn(viewModelScope)
-    }
-
-    fun onFavorite(movie: Movie) {
-        viewModelScope.launch {
-            runCatching {
-                deleteFavoriteUseCase.invoke(movie)
-                    .apply {}}
-                .onFailure { }
+        getFavoritesUseCase.invoke()
+            .onStart { _viewState.value = FavoriteViewState(isFavoriteChecked = true) }
+            .onCompletion { _viewState.value = FavoriteViewState(isLoading = false) }
+            .onEach { movies ->
+                _viewState.value = FavoriteViewState(getFavoritesMovies = movies)
+                Log.d("<L>", "getMoviesFromFavorite:${movies} ")
             }
-        }
+            .catch { onGetMovieFailure(it) }
+            .launchIn(viewModelScope)
 
-    private fun onBackPressed() {
-        _viewAction.value = ViewAction.NavigateBack
-        }
-
-    private fun goToDetails() {
-        _viewAction.value = ViewAction.GoToDetails
     }
 
-    private fun onAdapterAddToFavorites(movie: Movie) {
-        _viewAction.value = ViewAction.AddToFavorites(movie)
+    private fun onGetMovieFailure(throwable: Throwable) {
+        _viewState.value = FavoriteViewState(errorMessage = throwable.message)
+    }
+
+    fun deleteFavorite(movie: Movie) {
+        viewModelScope.launch {
+            deleteFavoriteUseCase(movie)
+        }
+    }
+
+    fun onAdapterItemClicked(movie: Movie) {
+        _viewAction.value = FavoriteViewAction.FavoriteClicked(movie)
     }
 }

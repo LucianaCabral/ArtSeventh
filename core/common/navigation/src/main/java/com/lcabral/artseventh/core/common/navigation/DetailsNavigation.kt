@@ -6,6 +6,7 @@ import kotlinx.parcelize.Parcelize
 
 interface DetailsNavigation {
     fun showDetails(context: Context, args: MovieArgs)
+    fun showFavorite(context: Context, argsId: Args)
 }
 
 @Parcelize
@@ -23,4 +24,10 @@ data class MovieArgs(
     val video: Boolean,
     val voteCount: Int,
     val voteAverage: Number,
+    val isFavorite: Boolean
 ) : Parcelable
+
+@Parcelize
+data class Args(
+    val id: Int
+) :  Parcelable

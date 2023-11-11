@@ -9,28 +9,41 @@ import com.lcabral.artseventh.features.movies.R
 import com.lcabral.artseventh.features.movies.databinding.ItemMovieBinding
 
 internal typealias MovieItemClicked = (Movie) -> Unit
+internal typealias FavoriteItemClicked = (Movie) -> Unit
 
 internal class MovieViewHolder(
     private val binding: ItemMovieBinding,
-    private val itemClicked: MovieItemClicked
+    private val itemClicked: MovieItemClicked,
+//    private val favoriteClicked: FavoriteItemClicked
 ) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bindView(movie: Movie) {
-        itemView.apply {
+        binding.apply {
             with(binding) {
                 movieTv.text = movie.name
                 Glide.with(itemView.context)
-                    .load(context.getString(R.string.movie_uri_image) + movie.posterPath).into(movieImage)
+                    .load(itemView.context.getString(R.string.movie_uri_image) + movie.posterPath)
+                    .into(movieImage)
+                addFavoriteCheckbox.isChecked = movie.isFavorite
             }
-        }
-        itemView.setOnClickListener {
-            itemClicked(movie)
+
+            movieImage.setOnClickListener {
+                itemClicked(movie)
+            }
+//            addFavoriteCheckbox.setOnClickListener {
+//                movie.isFavorite = addFavoriteCheckbox.isChecked
+//                favoriteClicked(movie)
+//            }
         }
     }
 
     companion object {
-        fun create(parent: ViewGroup, itemClicked: MovieItemClicked): MovieViewHolder {
+        fun create(
+            parent: ViewGroup,
+            itemClicked: MovieItemClicked,
+//            favoriteClicked: FavoriteItemClicked
+        ): MovieViewHolder {
             val inflater = LayoutInflater.from(parent.context)
             val binding = ItemMovieBinding
                 .inflate(inflater, parent, false)

@@ -1,7 +1,7 @@
 package com.lcabral.artseventh.core.common.navigation
 
-import android.content.Context
+import androidx.fragment.app.Fragment
 
 interface FavoritesNavigation {
-    fun create(context: Context)
+    fun create(): Fragment
 }
