@@ -97,8 +97,7 @@ internal class MovieFragment : Fragment(R.layout.fragment_movie) {
                 voteAverage = movie.voteAverage,
                 voteCount = movie.voteCount,
                 video = movie.video,
-                popularity = movie.popularity,
-                isFavorite = movie.isFavorite
+                popularity = movie.popularity
             )
         )
     }

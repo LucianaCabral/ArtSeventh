@@ -100,6 +100,5 @@ internal class DetailsActivity : AppCompatActivity(R.layout.activity_details) {
         includeOrigin.textOriginLanguage.text = String.format(
             getString(R.string.details_original_language), args?.originalLanguage
         )
-        addFavoriteCheckbox.isChecked = args?.isFavorite.orTrue()
     }
 }

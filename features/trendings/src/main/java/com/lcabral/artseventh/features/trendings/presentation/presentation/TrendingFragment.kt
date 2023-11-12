@@ -104,7 +104,6 @@ internal class TrendingFragment : Fragment(R.layout.fragment_trending) {
                 voteCount = movie.voteCount,
                 video = movie.video,
                 popularity = movie.popularity,
-                isFavorite = movie.isFavorite
             )
         )
     }

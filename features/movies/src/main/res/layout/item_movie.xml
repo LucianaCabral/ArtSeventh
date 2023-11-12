@@ -53,8 +53,6 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:background="@drawable/check_box_custom"
-        android:clickable="true"
-        android:focusable="true"
         android:text=""
         android:textOff=""
         android:textOn=""

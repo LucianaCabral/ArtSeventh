@@ -27,12 +27,10 @@ internal class MovieViewHolder(
     private var job: Job? = null
     fun bindView(movie: Movie) {
         binding.apply {
-            with(binding) {
                 movieTv.text = movie.name
                 Glide.with(itemView.context)
                     .load(itemView.context.getString(R.string.movie_uri_image) + movie.posterPath)
                     .into(movieImage)
-            }
 
             movieImage.setOnClickListener {
                 itemClicked(movieImage.id, movie)
@@ -43,7 +41,6 @@ internal class MovieViewHolder(
             }
             setFavorite(addFavoriteCheckbox.id)
         }
-
     }
 
     private fun ItemMovieBinding.setFavorite(id: Int) {

@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 internal class MovieRepositoryImpl(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
-    ): MovieRepository{
+) : MovieRepository {
     override fun getMovies(): Flow<List<Movie>> {
         return remoteDataSource.getMovies()
     }
@@ -30,12 +30,13 @@ internal class MovieRepositoryImpl(
         return remoteDataSource.upcoming()
     }
 
-    override suspend fun addToFavorites(movie: Movie){
-       return localDataSource.addToFavorite(movie)
+    override suspend fun addToFavorites(movie: Movie) {
+        return localDataSource.addToFavorite(movie)
     }
 
     override suspend fun isFavorite(id: Int): Boolean {
-       return localDataSource.isFavorite(id)
+        println("<LU> isFavoriteRepository = $id")
+        return localDataSource.isFavorite(id)
     }
 
     override fun getAllFavorites(): Flow<List<Movie>> {
@@ -46,7 +47,7 @@ internal class MovieRepositoryImpl(
         return localDataSource.deleteFromFavorite(movie)
     }
 
-    override fun getDetails() : Flow<List<Movie>> {
-       return remoteDataSource.getDetails()
+    override fun getDetails(): Flow<List<Movie>> {
+        return remoteDataSource.getDetails()
     }
 }

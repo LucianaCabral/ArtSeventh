@@ -5,8 +5,6 @@ import com.lcabral.artseventh.core.domain.model.Movie
 import com.lcabral.artseventh.libraries.arch.extensions.isDouble
 import com.lcabral.artseventh.libraries.arch.extensions.isZero
 import com.lcabral.artseventh.libraries.arch.extensions.orFalse
-
-class MovieLocalMapper {
     fun fromEntityToDomain(movieEntity: MovieEntity): Movie {
         return with(movieEntity) {
             Movie(
@@ -23,14 +21,12 @@ class MovieLocalMapper {
                 voteAverage = voteAverage.isDouble(),
                 voteCount = voteCount.isZero(),
                 video = video.orFalse(),
-                isFavorite = isFavorite.orFalse()
             )
         }
     }
 
-    fun fromDomainToEntity(movie: Movie): MovieEntity {
-        return with(movie) {
-            MovieEntity(
+    fun Movie.fromDomainToEntity(): MovieEntity {
+           return MovieEntity(
                 id = id,
                 adult = adult,
                 backdropPath = backdropPath,
@@ -43,10 +39,8 @@ class MovieLocalMapper {
                 release = release,
                 voteAverage = voteAverage,
                 voteCount = voteCount,
-                video = video,
-                isFavorite = isFavorite
+                video = video
             )
-        }
     }
 
     fun List<MovieEntity>.toMovies(): List<Movie> {
@@ -67,8 +61,25 @@ class MovieLocalMapper {
             release = release.orEmpty(),
             voteAverage = voteAverage.isDouble(),
             voteCount = voteCount.isZero(),
-            video = video.orFalse(),
-            isFavorite = isFavorite.orFalse()
+            video = video.orFalse()
+
         )
     }
-}
+
+    fun Movie.toMovieEntity(): MovieEntity {
+        return MovieEntity(
+            id = id.isZero(),
+            adult = adult.orFalse(),
+            backdropPath = backdropPath.orEmpty(),
+            name = name.orEmpty(),
+            overview = overview.orEmpty(),
+            originalLanguage = originalLanguage.orEmpty(),
+            originalTitle = originalTitle.orEmpty(),
+            posterPath = posterPath.orEmpty(),
+            popularity = popularity.isDouble(),
+            release = release.orEmpty(),
+            voteAverage = voteAverage.isDouble(),
+            voteCount = voteCount.isZero(),
+            video = video.orFalse()
+        )
+    }

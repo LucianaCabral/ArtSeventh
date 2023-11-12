@@ -26,12 +26,10 @@ object MoviesModule {
                 movieUseCase = GetMovieUseCase(repository = get()),
                 saveFavoriteUseCase = SaveFavoriteMovieUseCase(repository = get()),
                 deleteFavoriteUseCase = DeleteFavoriteUseCase(repository = get()),
-                getFavoriteUseCase = GetFavoritesMoviesUseCase(repository = get())
+                getFavoritesUseCase = GetFavoritesMoviesUseCase(repository = get())
             )
         }
     }
-
-
 
     private val additionalModules: Module = module {
         factory<MovieNavigation> { MovieNavigationImpl() }

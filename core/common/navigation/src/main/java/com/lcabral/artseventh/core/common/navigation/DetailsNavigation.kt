@@ -23,8 +23,7 @@ data class MovieArgs(
     val release: String,
     val video: Boolean,
     val voteCount: Int,
-    val voteAverage: Number,
-    val isFavorite: Boolean
+    val voteAverage: Number
 ) : Parcelable
 
 @Parcelize

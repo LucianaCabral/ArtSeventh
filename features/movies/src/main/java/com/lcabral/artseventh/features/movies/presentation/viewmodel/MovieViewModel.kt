@@ -21,7 +21,7 @@ internal class MovieViewModel(
     private val movieUseCase: GetMovieUseCase,
     private val saveFavoriteUseCase: SaveFavoriteMovieUseCase,
     private val deleteFavoriteUseCase: DeleteFavoriteUseCase,
-    private val getFavoriteUseCase: GetFavoritesMoviesUseCase,
+    private val getFavoritesUseCase:GetFavoritesMoviesUseCase,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 
     ) : ViewModel() {
@@ -67,7 +67,7 @@ internal class MovieViewModel(
 
     private fun getFavoriteMovies() {
         viewModelScope.launch {
-            getFavoriteUseCase()
+            getFavoritesUseCase()
         }
     }
 

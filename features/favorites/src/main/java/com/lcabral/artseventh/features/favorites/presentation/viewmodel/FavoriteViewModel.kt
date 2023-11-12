@@ -8,6 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.lcabral.artseventh.core.domain.model.Movie
 import com.lcabral.artseventh.core.domain.model.usecase.DeleteFavoriteUseCase
 import com.lcabral.artseventh.core.domain.model.usecase.GetFavoritesMoviesUseCase
+import com.lcabral.artseventh.core.domain.model.usecase.SaveFavoriteMovieUseCase
+import com.lcabral.artseventh.features.favorites.R
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onCompletion
@@ -18,9 +20,8 @@ import kotlinx.coroutines.launch
 internal class FavoriteViewModel(
     private val getFavoritesUseCase: GetFavoritesMoviesUseCase,
     private val deleteFavoriteUseCase: DeleteFavoriteUseCase,
+    private val saveFavoriteUseCase: SaveFavoriteMovieUseCase,
 ) : ViewModel() {
-
-    private val movie: Movie? = null
 
     private val _viewState: MutableLiveData<FavoriteViewState> =
         MutableLiveData<FavoriteViewState>()
@@ -58,7 +59,19 @@ internal class FavoriteViewModel(
         }
     }
 
-    fun onAdapterItemClicked(movie: Movie) {
-        _viewAction.value = FavoriteViewAction.FavoriteClicked(movie)
+    private fun saveFavorite(movie: Movie) {
+        viewModelScope.launch {
+            runCatching {
+                saveFavoriteUseCase(movie)
+            }.onFailure {}
+        }
+    }
+
+    fun onAdapterItemClicked(id: Int, movie: Movie) {
+        when (id) {
+            R.id.check_favorite -> {
+                saveFavorite(movie)
+            }
+        }
     }
 }
