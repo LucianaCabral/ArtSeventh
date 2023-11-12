@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 import com.lcabral.artseventh.core.domain.model.usecase.DeleteFavoriteUseCase
-import com.lcabral.artseventh.core.domain.model.usecase.GetFavoriteMoviesUseCase
+import com.lcabral.artseventh.core.domain.model.usecase.IsFavoritesMoviesUseCase
 import com.lcabral.artseventh.core.domain.model.usecase.SaveFavoriteMovieUseCase
 import com.lcabral.artseventh.core.domain.model.usecase.GetDetailsUseCase
 
@@ -14,7 +14,7 @@ private const val ARGS_MOVIE = "argsMovie"
 internal class DetailsViewModel(
 
     private val getDetailsUseCase: GetDetailsUseCase,
-    private val getFavoritesUseCase: GetFavoriteMoviesUseCase,
+    private val getFavoritesUseCase: IsFavoritesMoviesUseCase,
     private val addFavoriteMovieUseCase: SaveFavoriteMovieUseCase,
     private val deleteFavoriteUseCase: DeleteFavoriteUseCase,
 

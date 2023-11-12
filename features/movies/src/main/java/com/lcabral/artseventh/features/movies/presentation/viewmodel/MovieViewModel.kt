@@ -1,6 +1,5 @@
 package com.lcabral.artseventh.features.movies.presentation.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,8 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.lcabral.artseventh.core.domain.model.Movie
 import com.lcabral.artseventh.core.domain.model.usecase.SaveFavoriteMovieUseCase
 import com.lcabral.artseventh.core.domain.model.usecase.DeleteFavoriteUseCase
-import com.lcabral.artseventh.core.domain.model.usecase.GetFavoriteMoviesUseCase
+import com.lcabral.artseventh.core.domain.model.usecase.GetFavoritesMoviesUseCase
 import com.lcabral.artseventh.core.domain.model.usecase.GetMovieUseCase
+import com.lcabral.artseventh.features.movies.R
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
@@ -21,7 +21,7 @@ internal class MovieViewModel(
     private val movieUseCase: GetMovieUseCase,
     private val saveFavoriteUseCase: SaveFavoriteMovieUseCase,
     private val deleteFavoriteUseCase: DeleteFavoriteUseCase,
-    private val getFavoriteUseCase: GetFavoriteMoviesUseCase,
+    private val getFavoriteUseCase: GetFavoritesMoviesUseCase,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 
     ) : ViewModel() {
@@ -71,20 +71,22 @@ internal class MovieViewModel(
         }
     }
 
-    fun onFavoriteClicked(movie: Movie) {
+    private fun saveFavorite(movie: Movie) {
         viewModelScope.launch {
-            movie.isFavorite = movie.isFavorite
-            if (movie.isFavorite) {
-                saveFavoriteUseCase(movie)
-                _viewAction.value = MovieViewAction.SaveFavorite(movie)
-                Log.d("<L>", "onFavoriteClickedFromMovie:$movie ")
-            } else {
-                deleteFavoriteUseCase(movie)
-            }
+           runCatching {
+               saveFavoriteUseCase(movie)
+           }.onFailure {}
         }
     }
 
-    fun onAdapterItemClicked(movie: Movie) {
-        _viewAction.value = MovieViewAction.GoToDetails(movie)
+    fun onAdapterItemClicked(id: Int, movie: Movie) {
+        when (id) {
+            R.id.add_favorite_checkbox -> {
+                saveFavorite(movie)
+            }
+            R.id.movie_image -> {
+                _viewAction.value = MovieViewAction.GoToDetails(movie)
+            }
+        }
     }
 }

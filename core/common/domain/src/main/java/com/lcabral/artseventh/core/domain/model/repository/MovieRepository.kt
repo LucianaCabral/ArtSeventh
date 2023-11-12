@@ -10,7 +10,7 @@ interface MovieRepository {
     fun getTopRated(): Flow<List<Movie>>
     fun upcoming(): Flow<List<Movie>>
     suspend fun addToFavorites(movie:Movie)
-//    suspend fun isFavorite(id:Int): Boolean
+    suspend fun isFavorite(id:Int): Boolean
     fun getAllFavorites(): Flow<List<Movie>>
     suspend fun deleteFavorite(movie: Movie)
 

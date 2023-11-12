@@ -1,6 +1,7 @@
 package com.lcabral.artseventh.core.data.local.di
 
 import androidx.room.Room
+import com.lcabral.artseventh.core.data.local.database.MovieDao
 import com.lcabral.artseventh.core.data.local.database.MovieDataBase
 import org.koin.dsl.module
 
@@ -15,6 +16,10 @@ object LocalModule {
                 MovieDataBase::class.java,
                 "movie.db"
             ).build()
+        }
+
+        single<MovieDao> {
+            get<MovieDataBase>().movieDao()
         }
     }
 }

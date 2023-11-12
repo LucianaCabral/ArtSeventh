@@ -2,7 +2,7 @@ package com.lcabral.artseventh.features.details.di
 
 import com.lcabral.artseventh.core.common.navigation.DetailsNavigation
 import com.lcabral.artseventh.core.domain.model.usecase.DeleteFavoriteUseCase
-import com.lcabral.artseventh.core.domain.model.usecase.GetFavoriteMoviesUseCase
+import com.lcabral.artseventh.core.domain.model.usecase.IsFavoritesMoviesUseCase
 import com.lcabral.artseventh.core.domain.model.usecase.SaveFavoriteMovieUseCase
 import com.lcabral.artseventh.core.domain.model.usecase.GetDetailsUseCase
 import com.lcabral.artseventh.features.details.navigation.DetailsNavigationImpl
@@ -20,7 +20,7 @@ object DetailsModule {
 //                (args: MovieArgs) ->
             DetailsViewModel(
                 addFavoriteMovieUseCase = SaveFavoriteMovieUseCase(repository = get()),
-                getFavoritesUseCase = GetFavoriteMoviesUseCase(repository = get()),
+                getFavoritesUseCase = IsFavoritesMoviesUseCase(repository = get()),
                 deleteFavoriteUseCase = DeleteFavoriteUseCase(repository = get()),
                 getDetailsUseCase = GetDetailsUseCase(repository = get())
 //                args = args

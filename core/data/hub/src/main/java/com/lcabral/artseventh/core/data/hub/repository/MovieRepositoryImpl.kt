@@ -34,6 +34,10 @@ internal class MovieRepositoryImpl(
        return localDataSource.addToFavorite(movie)
     }
 
+    override suspend fun isFavorite(id: Int): Boolean {
+       return localDataSource.isFavorite(id)
+    }
+
     override fun getAllFavorites(): Flow<List<Movie>> {
         return localDataSource.getFavoritesMovies()
     }
