@@ -9,10 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lcabral.artseventh.core.domain.model.Movie
 import com.lcabral.artseventh.core.domain.model.usecase.IsFavoritesMoviesUseCase
-import com.lcabral.artseventh.features.favorites.databinding.FragmentFavoriteBinding
 import com.lcabral.artseventh.features.favorites.presentation.viewmodel.FavoriteViewAction
 import com.lcabral.artseventh.features.favorites.presentation.viewmodel.FavoriteViewModel
 import com.lcabral.artseventh.features.favorites.presentation.adapter.FavoriteAdapter
+import com.lcabral.features.favorites.R
+import com.lcabral.features.favorites.databinding.FragmentFavoriteBinding
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
