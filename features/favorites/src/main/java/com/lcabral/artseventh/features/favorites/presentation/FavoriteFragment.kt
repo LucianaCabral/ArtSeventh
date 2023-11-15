@@ -1,4 +1,4 @@
-package com.lcabral.artseventh.features.favorites
+package com.lcabral.artseventh.features.favorites.presentation
 
 import android.os.Bundle
 import android.util.Log
