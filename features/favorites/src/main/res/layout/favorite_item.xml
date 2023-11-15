@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-   android:layout_marginHorizontal="@dimen/dimen_8"
+    android:layout_marginHorizontal="@dimen/dimen_8"
     android:layout_marginTop="8dp"
-    app:cardPreventCornerOverlap="false"
-    app:cardUseCompatPadding="false"
-    app:rippleColor="#717171"
-    app:cardBackgroundColor="@color/black"
+    android:background="@color/black"
     android:elevation="@dimen/dimen_2"
     app:cardCornerRadius="@dimen/dimen_8"
+    app:cardPreventCornerOverlap="false"
+    app:cardUseCompatPadding="false"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    app:layout_constraintTop_toTopOf="parent"
+    app:rippleColor="#717171">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -26,43 +25,45 @@
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/movie_image_movie"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/backgrounds/scenic" />
 
-    <TextView
-        android:id="@+id/favorite_tv"
-        style="@style/TextAppearance.AppCompat.Body2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="12dp"
-        android:padding="2dp"
-        android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/image_favorite"
-        app:layout_constraintEnd_toStartOf="@id/check_favorite"
-        app:layout_constraintStart_toStartOf="@id/image_favorite"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="MovieFavorited" />
+        <TextView
+            android:id="@+id/favorite_tv"
+            style="@style/TextAppearance.AppCompat.Body2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="12dp"
+            android:padding="2dp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/check_favorite"
+            app:layout_constraintStart_toStartOf="@id/image_favorite"
+            app:layout_constraintTop_toBottomOf="@id/image_favorite"
+            tools:text="MovieFavorited" />
 
         <androidx.appcompat.widget.AppCompatToggleButton
             android:id="@+id/check_favorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_8"
+            android:layout_marginStart="@dimen/dimen_8"
+            android:background="@android:color/transparent"
+            android:button="@drawable/check_box_custom"
+            android:checked="true"
             android:clickable="true"
             android:focusable="true"
-            android:background="@android:color/transparent"
             android:text=""
             android:textOff=""
             android:textOn=""
-            android:button="@drawable/check_box_custom"
-            android:layout_marginEnd="@dimen/dimen_8"
-            android:layout_marginBottom="@dimen/dimen_8"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/favorite_tv"
             app:layout_constraintTop_toBottomOf="@id/image_favorite"
-            app:layout_constraintEnd_toEndOf="parent"
             tools:checked="true" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

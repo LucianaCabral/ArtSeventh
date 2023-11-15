@@ -5,10 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lcabral.artseventh.core.domain.model.Movie
-import com.lcabral.artseventh.core.domain.model.usecase.SaveFavoriteMovieUseCase
-import com.lcabral.artseventh.core.domain.model.usecase.DeleteFavoriteUseCase
 import com.lcabral.artseventh.core.domain.model.usecase.GetFavoritesMoviesUseCase
 import com.lcabral.artseventh.core.domain.model.usecase.GetMovieUseCase
+import com.lcabral.artseventh.core.domain.model.usecase.SaveFavoriteMovieUseCase
 import com.lcabral.artseventh.features.movies.R
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -16,11 +15,11 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 internal class MovieViewModel(
     private val movieUseCase: GetMovieUseCase,
     private val saveFavoriteUseCase: SaveFavoriteMovieUseCase,
-    private val deleteFavoriteUseCase: DeleteFavoriteUseCase,
     private val getFavoritesUseCase:GetFavoritesMoviesUseCase,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 
@@ -75,8 +74,15 @@ internal class MovieViewModel(
         viewModelScope.launch {
            runCatching {
                saveFavoriteUseCase(movie)
-           }.onFailure {}
+           }.onFailure { onSaveFavoriteFailure(it)}
         }
+    }
+    private fun onSaveFavoriteFailure(error: Throwable) {
+        if (error is Error) {
+            _viewState.value = MovieStateView(flipperChild = FAILURE_CHILD,
+                message = R.string.movie_save_error)
+        }
+        Timber.e(error.message, error.toString())
     }
 
     fun onAdapterItemClicked(id: Int, movie: Movie) {

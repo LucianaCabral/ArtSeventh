@@ -45,4 +45,5 @@ object Versions {
     const val rxJava2Binding = "3.0.0"
     const val swipeRefreshLayout = "1.1.0"
     const val splashScreenCore = "1.0.0"
+    const val timber = "5.0.1"
 }

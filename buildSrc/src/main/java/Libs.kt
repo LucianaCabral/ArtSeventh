@@ -53,4 +53,7 @@ object Libs {
     // Coroutines
     const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutinesAndroid}"
     const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesCore}"
+
+    // Timber
+    const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
 }
