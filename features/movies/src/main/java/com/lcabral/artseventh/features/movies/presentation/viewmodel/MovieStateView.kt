@@ -10,6 +10,5 @@ internal const val FAILURE_CHILD = 2
 internal data class MovieStateView(
     val getMoviesResultItems: List<Movie>? = null,
     val flipperChild: Int = LOADING_CHILD,
-    var errorMessage: String? = null,
     @StringRes val message: Int? = null
 )

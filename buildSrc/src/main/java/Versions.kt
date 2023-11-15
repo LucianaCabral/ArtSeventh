@@ -39,7 +39,6 @@ object Versions {
     const val okhttp = "4.9.1"
     const val okHttpLoggingInterceptor = "4.9.0"
     const val rxJava2 = "3.1.6"
-
     const val rxJavaAndroid = "2.1.1"
     const val rxJava2Relev = "2.1.1"
     const val rxJava2Binding = "3.0.0"

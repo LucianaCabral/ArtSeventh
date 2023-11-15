@@ -20,7 +20,6 @@ object FavoriteModule {
             FavoriteViewModel(
                 getFavoritesUseCase = GetFavoritesMoviesUseCase(repository = get()),
                 DeleteFavoriteUseCase(repository = get()),
-                saveFavoriteUseCase = SaveFavoriteMovieUseCase(repository = get())
             )
         }
     }

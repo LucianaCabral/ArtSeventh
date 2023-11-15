@@ -80,7 +80,7 @@ internal class MovieViewModel(
     private fun onSaveFavoriteFailure(error: Throwable) {
         if (error is Error) {
             _viewState.value = MovieStateView(flipperChild = FAILURE_CHILD,
-                message = R.string.movie_save_error)
+                message = R.string.error_message )
         }
         Timber.e(error.message, error.toString())
     }

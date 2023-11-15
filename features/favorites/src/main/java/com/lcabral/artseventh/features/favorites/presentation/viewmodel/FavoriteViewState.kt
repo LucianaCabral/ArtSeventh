@@ -11,6 +11,5 @@ internal data class FavoriteViewState(
     val isFavoriteChecked:Boolean = true,
     val flipperChild: Int = LOADING_CHILD,
     val getFavoritesMovies:List<Movie> = emptyList(),
-    var errorMessage: String? = null,
     @StringRes val message: Int? = null
 )
