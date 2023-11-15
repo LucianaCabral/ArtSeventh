@@ -1,4 +1,5 @@
 <resources>
     <string name="movie">Movies</string>
     <string name="movie_uri_image">https://image.tmdb.org/t/p/w500</string>
+    <string name="error_message">Ops! Favorites don´t saved.Try again</string>
 </resources>

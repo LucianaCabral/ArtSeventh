@@ -21,5 +21,6 @@ dependencies {
     // Libs
     implementation(Libs.coil)
     implementation(Libs.glide)
+    implementation(Libs.timber)
 }
 

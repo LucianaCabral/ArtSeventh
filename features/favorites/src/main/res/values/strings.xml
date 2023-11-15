@@ -1,0 +1,4 @@
+<resources>
+    <string name="favorites_title">Favorites</string>
+    <string name="error_message">Ops! Favorites don´t saved. Try again</string>
+</resources>

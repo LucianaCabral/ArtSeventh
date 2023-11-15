@@ -25,6 +25,7 @@ include ':app',
         ':features',
         ':features:dashboard',
         ':features:details',
+        ':features:favorites',
         ':features:header',
         ':features:movies',
         ':features:popular',
@@ -35,3 +36,4 @@ include ':app',
         ':libraries:dstools',
         ':features:toprated',
         ':features:upcoming'
+

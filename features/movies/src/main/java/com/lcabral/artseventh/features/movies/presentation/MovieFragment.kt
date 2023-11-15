@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.lcabral.artseventh.core.common.navigation.DetailsNavigation
 import com.lcabral.artseventh.core.common.navigation.MovieArgs
 import com.lcabral.artseventh.core.domain.model.Movie
+import com.lcabral.artseventh.core.domain.model.usecase.IsFavoritesMoviesUseCase
 import com.lcabral.artseventh.features.movies.R
 import com.lcabral.artseventh.features.movies.databinding.FragmentMovieBinding
 import com.lcabral.artseventh.features.movies.presentation.adapter.MovieAdapter
@@ -24,9 +25,10 @@ internal class MovieFragment : Fragment(R.layout.fragment_movie) {
     private var _binding: FragmentMovieBinding? = null
     private val binding get() = _binding!!
     private val viewModel: MovieViewModel by viewModel()
-    private val movieAdapter by lazy { MovieAdapter { viewModel.onAdapterItemClicked(it) } }
     private val detailsNavigation: DetailsNavigation by inject()
-
+    private val isFavoriteUseCase: IsFavoritesMoviesUseCase by inject()
+    private val movieAdapter by lazy { MovieAdapter(isFavoriteUseCase) { id, movie ->
+        viewModel.onAdapterItemClicked(id, movie) } }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -38,10 +40,12 @@ internal class MovieFragment : Fragment(R.layout.fragment_movie) {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+//        movieAdapter.jo
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupRecyclerView()
         setupObservers()
     }

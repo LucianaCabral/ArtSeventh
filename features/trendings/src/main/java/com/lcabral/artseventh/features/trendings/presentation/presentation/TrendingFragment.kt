@@ -103,7 +103,8 @@ internal class TrendingFragment : Fragment(R.layout.fragment_trending) {
                 voteAverage = movie.voteAverage,
                 voteCount = movie.voteCount,
                 video = movie.video,
-                popularity = movie.popularity)
+                popularity = movie.popularity,
+            )
         )
     }
 

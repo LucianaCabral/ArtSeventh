@@ -18,4 +18,7 @@ interface MovieService {
 
     @GET("/3/movie/upcoming")
     suspend fun getUpcoming(): MovieResult
+
+    @GET("/3/movie/now_playing")
+    suspend fun getDetails(): MovieResult
 }

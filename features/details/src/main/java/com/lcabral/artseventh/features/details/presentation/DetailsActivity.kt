@@ -2,16 +2,19 @@ package com.lcabral.artseventh.features.details.presentation
 
 import android.graphics.Color
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import coil.load
 import com.lcabral.arch.lib.extensions.onBackPressedHandleFragmentActivity
 import com.lcabral.artseventh.core.common.navigation.MovieArgs
 import com.lcabral.artseventh.features.details.R
 import com.lcabral.artseventh.features.details.databinding.ActivityDetailsBinding
+import com.lcabral.artseventh.features.details.presentation.viewmodel.DetailViewAction
 import com.lcabral.artseventh.features.details.presentation.viewmodel.DetailsViewModel
-import com.lcabral.artseventh.features.details.presentation.viewmodel.ViewAction
+import com.lcabral.artseventh.libraries.arch.extensions.orTrue
 import com.lcabral.artseventh.libraries.arch.extensions.parcelable
 import com.lcabral.artseventh.libraries.arch.extensions.toStringAnswer
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -27,6 +30,7 @@ internal class DetailsActivity : AppCompatActivity(R.layout.activity_details) {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -35,26 +39,32 @@ internal class DetailsActivity : AppCompatActivity(R.layout.activity_details) {
         initViews()
         setupListeners()
         onHandleBackPressed()
-        onActionListeners()
+        setupObservables()
     }
 
-    private fun onActionListeners() {
+    private fun setupObservables() {
+        viewModel.viewState.observe(this) { state ->
+            binding.addFavoriteCheckbox.isChecked = state.isFavoriteChecked
+            Log.d("<L>", "DetailsActivityFrom:${state.isFavoriteChecked} ")
+        }
+
         viewModel.viewAction.observe(this) { action ->
             when (action) {
-                ViewAction.NavigateBack -> finish()
+                DetailViewAction.NavigateBack -> finish()
+                DetailViewAction.FavoriteChecked -> Toast.makeText(applicationContext, "itemClicked", Toast.LENGTH_SHORT).show()
             }
         }
-    }
-
-    private fun onHandleBackPressed() {
-        onBackPressedHandleFragmentActivity { viewModel.onBackPressed() }
-        supportFragmentManager.popBackStackImmediate()
     }
 
     private fun setupListeners() = with(binding) {
         detailsToolbar.setNavigationOnClickListener {
             viewModel.onBackPressed()
         }
+    }
+
+    private fun onHandleBackPressed() {
+        onBackPressedHandleFragmentActivity { viewModel.onBackPressed() }
+        supportFragmentManager.popBackStackImmediate()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
