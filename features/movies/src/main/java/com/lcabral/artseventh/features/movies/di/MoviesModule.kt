@@ -1,6 +1,7 @@
 package com.lcabral.artseventh.features.movies.di
 
 import com.lcabral.artseventh.core.common.navigation.MovieNavigation
+import com.lcabral.artseventh.core.domain.model.usecase.DeleteFavoriteUseCase
 import com.lcabral.artseventh.core.domain.model.usecase.GetFavoritesMoviesUseCase
 import com.lcabral.artseventh.core.domain.model.usecase.GetMovieUseCase
 import com.lcabral.artseventh.core.domain.model.usecase.IsFavoritesMoviesUseCase
@@ -24,7 +25,9 @@ object MoviesModule {
             MovieViewModel(
                 movieUseCase = GetMovieUseCase(repository = get()),
                 saveFavoriteUseCase = SaveFavoriteMovieUseCase(repository = get()),
-                getFavoritesUseCase = GetFavoritesMoviesUseCase(repository = get())
+                getFavoritesUseCase = GetFavoritesMoviesUseCase(repository = get()),
+                deleteFavoriteUseCase = DeleteFavoriteUseCase(repository = get())
+
             )
         }
     }

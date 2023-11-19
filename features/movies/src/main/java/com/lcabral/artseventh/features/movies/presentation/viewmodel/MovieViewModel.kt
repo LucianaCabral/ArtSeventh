@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lcabral.artseventh.core.domain.model.Movie
+import com.lcabral.artseventh.core.domain.model.usecase.DeleteFavoriteUseCase
 import com.lcabral.artseventh.core.domain.model.usecase.GetFavoritesMoviesUseCase
 import com.lcabral.artseventh.core.domain.model.usecase.GetMovieUseCase
 import com.lcabral.artseventh.core.domain.model.usecase.SaveFavoriteMovieUseCase
@@ -20,7 +21,8 @@ import timber.log.Timber
 internal class MovieViewModel(
     private val movieUseCase: GetMovieUseCase,
     private val saveFavoriteUseCase: SaveFavoriteMovieUseCase,
-    private val getFavoritesUseCase:GetFavoritesMoviesUseCase,
+    private val deleteFavoriteUseCase: DeleteFavoriteUseCase,
+    private val getFavoritesUseCase: GetFavoritesMoviesUseCase,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 
     ) : ViewModel() {
@@ -72,24 +74,53 @@ internal class MovieViewModel(
 
     private fun saveFavorite(movie: Movie) {
         viewModelScope.launch {
-           runCatching {
-               saveFavoriteUseCase(movie)
-           }.onFailure { onSaveFavoriteFailure(it)}
+            runCatching {
+                saveFavoriteUseCase(movie)
+            }
+                .onFailure { onSaveFavoriteFailure(it) }
         }
     }
-    private fun onSaveFavoriteFailure(error: Throwable) {
+
+    private fun deleteFavorite(movie: Movie) {
+        viewModelScope.launch {
+            runCatching {
+                deleteFavoriteUseCase(movie)
+            }.onFailure {
+                onDeleteFavoriteSuccess(it)
+            }
+        }
+    }
+
+    private fun onDeleteFavoriteSuccess(error: Throwable) {
         if (error is Error) {
-            _viewState.value = MovieStateView(flipperChild = FAILURE_CHILD,
-                message = R.string.error_message )
+            _viewState.value = MovieStateView(
+                flipperChild = FAILURE_CHILD,
+                message = R.string.delete_error_message
+            )
         }
         Timber.e(error.message, error.toString())
     }
 
-    fun onAdapterItemClicked(id: Int, movie: Movie) {
+    private fun onSaveFavoriteFailure(error: Throwable) {
+        if (error is Error) {
+            _viewState.value = MovieStateView(
+                flipperChild = FAILURE_CHILD,
+                message = R.string.error_message
+            )
+        }
+        Timber.e(error.message, error.toString())
+    }
+
+    fun onAdapterItemClicked(id: Int, movie: Movie, isFavorite: Boolean) {
         when (id) {
             R.id.add_favorite_checkbox -> {
-                saveFavorite(movie)
+                if (isFavorite) {
+                    saveFavorite(movie)
+                } else {
+                    deleteFavorite(movie)
+                }
             }
+
             R.id.movie_image -> {
                 _viewAction.value = MovieViewAction.GoToDetails(movie)
             }
