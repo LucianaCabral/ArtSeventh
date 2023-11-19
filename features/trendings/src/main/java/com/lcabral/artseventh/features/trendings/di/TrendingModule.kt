@@ -1,7 +1,7 @@
 package com.lcabral.artseventh.features.trendings.di
 
 import com.lcabral.artseventh.core.common.navigation.TrendingNavigation
-import com.lcabral.artseventh.core.domain.model.usecase.GetTrendingUseCase
+import com.lcabral.artseventh.core.domain.usecase.GetTrendingUseCase
 import com.lcabral.artseventh.features.trendings.navigation.TrendingNavigationImpl
 import com.lcabral.artseventh.features.trendings.presentation.presentation.viewmodel.TrendingViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel

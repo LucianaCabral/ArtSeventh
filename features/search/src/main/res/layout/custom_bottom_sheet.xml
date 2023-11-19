@@ -41,13 +41,13 @@
         style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dimen_8"
         android:layout_marginStart="@dimen/dimen_16"
         android:layout_marginTop="@dimen/dimen_16"
         android:layout_marginEnd="@dimen/dimen_16"
+        android:layout_marginBottom="@dimen/dimen_8"
         android:textColor="@android:color/white"
-        tools:text="Sim"
-        android:textSize="@dimen/font_size_18"/>
+        android:textSize="@dimen/font_size_18"
+        tools:text="Sim" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_popularity_details"
@@ -71,6 +71,7 @@
         android:textColor="@android:color/white"
         android:textSize="@dimen/font_size_16"
         tools:text="english" />
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_adult_details"
         style="@style/TextAppearance.MaterialComponents.Caption"

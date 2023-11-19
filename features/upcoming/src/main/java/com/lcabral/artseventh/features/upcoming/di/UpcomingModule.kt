@@ -1,7 +1,7 @@
 package com.lcabral.artseventh.features.upcoming.di
 
 import com.lcabral.artseventh.core.common.navigation.UpcomingNavigation
-import com.lcabral.artseventh.core.domain.model.usecase.GetUpcomingUseCase
+import com.lcabral.artseventh.core.domain.usecase.GetUpcomingUseCase
 import com.lcabral.artseventh.features.upcoming.navigation.UpcomingNavigationImpl
 import com.lcabral.artseventh.features.upcoming.presentation.viewmodel.UpcomingViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel

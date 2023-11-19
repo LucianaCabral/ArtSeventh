@@ -1,12 +1,11 @@
 package com.lcabral.artseventh.features.toprated.presentation.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lcabral.artseventh.core.domain.model.Movie
-import com.lcabral.artseventh.core.domain.model.usecase.GetTopRatedUseCase
+import com.lcabral.artseventh.core.domain.usecase.GetTopRatedUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
@@ -40,7 +39,6 @@ internal class TopRatedViewModel(
             flipperChild = SUCCESS_CHILD,
             getTopRatedResultItems = topRatedResults
         )
-        Log.d("<Lo>", "handleSuccess: $topRatedResults")
     }
 
     private fun handleError() {

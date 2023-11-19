@@ -1,4 +1,4 @@
-package com.lcabral.artseventh.core.domain.model.repository
+package com.lcabral.artseventh.core.domain.repository
 
 import com.lcabral.artseventh.core.domain.model.Movie
 import kotlinx.coroutines.flow.Flow

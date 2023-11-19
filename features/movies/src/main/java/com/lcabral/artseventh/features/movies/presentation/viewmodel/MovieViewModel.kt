@@ -5,10 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lcabral.artseventh.core.domain.model.Movie
-import com.lcabral.artseventh.core.domain.model.usecase.DeleteFavoriteUseCase
-import com.lcabral.artseventh.core.domain.model.usecase.GetFavoritesMoviesUseCase
-import com.lcabral.artseventh.core.domain.model.usecase.GetMovieUseCase
-import com.lcabral.artseventh.core.domain.model.usecase.SaveFavoriteMovieUseCase
+import com.lcabral.artseventh.core.domain.usecase.DeleteFavoriteUseCase
+import com.lcabral.artseventh.core.domain.usecase.GetFavoritesMoviesUseCase
+import com.lcabral.artseventh.core.domain.usecase.GetMovieUseCase
+import com.lcabral.artseventh.core.domain.usecase.SaveFavoriteMovieUseCase
 import com.lcabral.artseventh.features.movies.R
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -59,7 +59,6 @@ internal class MovieViewModel(
     }
 
     private fun handleMoviesSuccess(movieResults: List<Movie>) {
-//        Log.d("<L>", "MovieSuccess:${movieResults} ")
         _viewState.value = MovieStateView(
             flipperChild = SUCCESS_CHILD,
             getMoviesResultItems = movieResults

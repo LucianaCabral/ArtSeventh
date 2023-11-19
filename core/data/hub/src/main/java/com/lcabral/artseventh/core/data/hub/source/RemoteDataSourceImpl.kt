@@ -15,7 +15,6 @@ internal class RemoteDataSourceImpl(
         return flow {
             emit(service.getMovie().toMovie())
         }
-
     }
 
     override fun getPopular(): Flow<List<Movie>> {

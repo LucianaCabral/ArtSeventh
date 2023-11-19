@@ -3,7 +3,7 @@ package com.lcabral.artseventh.core.data.hub.repository
 import com.lcabral.artseventh.core.data.local.source.LocalDataSource
 import com.lcabral.artseventh.core.data.remote.source.RemoteDataSource
 import com.lcabral.artseventh.core.domain.model.Movie
-import com.lcabral.artseventh.core.domain.model.repository.MovieRepository
+import com.lcabral.artseventh.core.domain.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
 
 internal class MovieRepositoryImpl(
@@ -36,7 +36,6 @@ internal class MovieRepositoryImpl(
 
     override suspend fun isFavorite(id: Int): Boolean {
         return localDataSource.isFavorite(id).apply {
-            println("<LU> isFavoriteRepository = $this")
         }
     }
 

@@ -1,7 +1,6 @@
 package com.lcabral.artseventh.features.movies.presentation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.lcabral.artseventh.core.common.navigation.DetailsNavigation
 import com.lcabral.artseventh.core.common.navigation.MovieArgs
 import com.lcabral.artseventh.core.domain.model.Movie
-import com.lcabral.artseventh.core.domain.model.usecase.IsFavoritesMoviesUseCase
+import com.lcabral.artseventh.core.domain.usecase.IsFavoritesMoviesUseCase
 import com.lcabral.artseventh.features.movies.R
 import com.lcabral.artseventh.features.movies.databinding.FragmentMovieBinding
 import com.lcabral.artseventh.features.movies.presentation.adapter.MovieAdapter
@@ -41,7 +40,6 @@ internal class MovieFragment : Fragment(R.layout.fragment_movie) {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-//        movieAdapter.jo
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,7 +52,6 @@ internal class MovieFragment : Fragment(R.layout.fragment_movie) {
     private fun setupObservers() {
         viewModel.viewState.observe(viewLifecycleOwner) { state ->
             updateList(state.getMoviesResultItems)
-            Log.d("<LMovie>", "setupObservers:${state.getMoviesResultItems} ")
             flipperContainerState(state.flipperChild)
         }
 

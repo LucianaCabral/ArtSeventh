@@ -15,6 +15,4 @@ dependencies {
     implementation project(Modules.local)
     implementation project(Modules.remote)
     implementation project(Modules.archLibs)
-
-    // Libs
 }
