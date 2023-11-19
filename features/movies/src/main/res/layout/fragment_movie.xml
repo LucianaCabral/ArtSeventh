@@ -22,7 +22,7 @@
             android:layout_marginStart="@dimen/dimen_16"
             android:layout_marginTop="@dimen/dimen_8"
             android:text="@string/movie"
-            android:textColor="@color/color_movie_title_backdrop"
+            android:textColor="@color/white"
             android:textSize="@dimen/font_size_24"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"

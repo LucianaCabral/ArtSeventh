@@ -7,10 +7,11 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_item"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
         android:layout_marginStart="@dimen/dimen_8"
         android:layout_marginTop="@dimen/dimen_8"
+        android:backgroundTint="@color/black"
         android:elevation="@dimen/dimen_8"
         app:cardCornerRadius="@dimen/dimen_8"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,8 +19,8 @@
 
         <ImageView
             android:id="@+id/top_rated_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
             android:contentDescription="@string/top_rated_image_description"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
@@ -34,10 +35,10 @@
             android:layout_height="67dp"
             android:layout_marginStart="@dimen/dimen_8"
             android:layout_marginBottom="@dimen/dimen_12"
-            android:padding="@dimen/dimen_2"
-            android:textStyle="bold"
             android:opacity="opaque"
-            android:textColor="@color/color_movie_title_backdrop"
+            android:padding="@dimen/dimen_2"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/top_rated_image"
             app:layout_constraintTop_toTopOf="@id/top_rated_image"
             tools:text="Top Rated" />

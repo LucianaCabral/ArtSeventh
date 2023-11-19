@@ -7,10 +7,11 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_item_upcoming"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:backgroundTint="@color/black"
         android:elevation="8dp"
         app:cardCornerRadius="8dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,8 +19,8 @@
 
         <ImageView
             android:id="@+id/upcoming_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
             android:layout_marginBottom="12dp"
             android:contentDescription="@string/upcoming_image_description"
             android:scaleType="centerCrop"
@@ -36,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             android:padding="2dp"
-            android:textColor="#FF8A80"
+            android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="@id/upcoming_image"
             app:layout_constraintTop_toTopOf="@id/upcoming_image"
             tools:text="Filme  upcoming" />
