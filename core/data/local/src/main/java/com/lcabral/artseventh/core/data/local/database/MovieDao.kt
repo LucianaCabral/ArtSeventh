@@ -15,7 +15,7 @@ interface MovieDao {
     suspend fun insertFavorite(movieEntity: MovieEntity)
 
     @Query("SELECT * FROM movies WHERE id = :id")
-    suspend fun getFavorite(id: Int): MovieEntity
+    suspend fun getFavorite(id: Int): MovieEntity?
 
     //nao uso suspend pq ele já suspend  é automaticamente já que é flow
     //  STREAM OF DATA - exibe todos os filmes por id -

@@ -1,6 +1,5 @@
 package com.lcabral.artseventh.features.movies.presentation.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,14 +8,12 @@ import com.lcabral.artseventh.core.domain.model.Movie
 import com.lcabral.artseventh.core.domain.model.usecase.IsFavoritesMoviesUseCase
 import com.lcabral.artseventh.features.movies.R
 import com.lcabral.artseventh.features.movies.databinding.ItemMovieBinding
-import com.lcabral.artseventh.libraries.arch.extensions.isNotNull
-import com.lcabral.artseventh.libraries.arch.extensions.isNull
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-internal typealias MovieItemClicked = (Id: Int, movie: Movie) -> Unit
+internal typealias MovieItemClicked = (Int, Movie, Boolean) -> Unit
 
 internal class MovieViewHolder(
     private val binding: ItemMovieBinding,
@@ -27,19 +24,19 @@ internal class MovieViewHolder(
     private var job: Job? = null
     fun bindView(movie: Movie) {
         binding.apply {
-                movieTv.text = movie.name
-                Glide.with(itemView.context)
-                    .load(itemView.context.getString(R.string.movie_uri_image) + movie.posterPath)
-                    .into(movieImage)
+            movieTv.text = movie.name
+            Glide.with(itemView.context)
+                .load(itemView.context.getString(R.string.movie_uri_image) + movie.posterPath)
+                .into(movieImage)
 
             movieImage.setOnClickListener {
-                itemClicked(movieImage.id, movie)
+                itemClicked(movieImage.id, movie, false)
             }
 
-            addFavoriteCheckbox.setOnClickListener {
-                itemClicked(addFavoriteCheckbox.id, movie)
+            addFavoriteCheckbox.setOnCheckedChangeListener { _, isChecked ->
+                itemClicked(addFavoriteCheckbox.id, movie, isChecked)
             }
-            setFavorite(addFavoriteCheckbox.id)
+            setFavorite(movie.id)
         }
     }
 

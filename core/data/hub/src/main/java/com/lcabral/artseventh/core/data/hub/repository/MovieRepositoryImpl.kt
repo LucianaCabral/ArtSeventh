@@ -35,8 +35,9 @@ internal class MovieRepositoryImpl(
     }
 
     override suspend fun isFavorite(id: Int): Boolean {
-        println("<LU> isFavoriteRepository = $id")
-        return localDataSource.isFavorite(id)
+        return localDataSource.isFavorite(id).apply {
+            println("<LU> isFavoriteRepository = $this")
+        }
     }
 
     override fun getAllFavorites(): Flow<List<Movie>> {

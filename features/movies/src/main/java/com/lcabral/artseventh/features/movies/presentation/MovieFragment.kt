@@ -27,8 +27,9 @@ internal class MovieFragment : Fragment(R.layout.fragment_movie) {
     private val viewModel: MovieViewModel by viewModel()
     private val detailsNavigation: DetailsNavigation by inject()
     private val isFavoriteUseCase: IsFavoritesMoviesUseCase by inject()
-    private val movieAdapter by lazy { MovieAdapter(isFavoriteUseCase) { id, movie ->
-        viewModel.onAdapterItemClicked(id, movie) } }
+    private val movieAdapter by lazy {
+        MovieAdapter(isFavoriteUseCase, viewModel::onAdapterItemClicked)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?

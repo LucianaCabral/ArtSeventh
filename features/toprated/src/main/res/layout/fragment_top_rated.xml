@@ -7,10 +7,8 @@
     android:layout_height="wrap_content"
     tools:context=".presentation.TopRatedFragment">
 
-    <ProgressBar
-        android:id="@+id/progressCircular"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <include
+       layout="@layout/include_top_rated_empty" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -24,7 +22,7 @@
             android:layout_marginTop="@dimen/dimen_24"
             android:text="@string/top_rated_about_top_rated"
             android:textColor="@color/white"
-            android:textSize="@dimen/font_size_18"
+            android:textSize="@dimen/font_size_24"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

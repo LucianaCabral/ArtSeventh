@@ -13,7 +13,7 @@
         android:importantForAccessibility="yes"
         android:navigationIcon="@drawable/ic_back"
         android:title="@string/search_about_movies"
-        android:titleTextColor="@color/color_movie_title_backdrop"
+        android:titleTextColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
