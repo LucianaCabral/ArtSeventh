@@ -51,6 +51,7 @@ internal class TopRatedFragment : Fragment(R.layout.fragment_top_rated) {
         setupObservers()
     }
 
+
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setupObservers() {
         viewModel.viewState.observe(viewLifecycleOwner) { state ->
@@ -101,13 +102,18 @@ internal class TopRatedFragment : Fragment(R.layout.fragment_top_rated) {
             imgDetails.load(getString(R.string.top_rated_uri_image) + movie.backdropPath)
             tvTitleMovieDetails.text = movie.name
             tvOverviewDetails.text = movie.overview
-            tvReleaseDetails.text = String.format(getString(R.string.top_rated_release), movie.release)
-            tvVoteCountDetails.text = String.format(getString(R.string.top_rated_vote_count), movie.voteCount)
+            tvReleaseDetails.text =
+                String.format(getString(R.string.top_rated_release), movie.release)
+            tvVoteCountDetails.text =
+                String.format(getString(R.string.top_rated_vote_count), movie.voteCount)
             tvVoteAverageDetails.text = String.format(
                 getString(R.string.top_rated_vote_average),
                 movie.voteAverage
             )
             dialog.show()
+            closeBtn.setOnClickListener {
+                dialog.dismiss()
+            }
         }
     }
 

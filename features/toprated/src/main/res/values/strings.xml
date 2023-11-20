@@ -8,4 +8,5 @@
     <string name="top_rated_vote_count">Vote: %s</string>
     <string name="top_rated_vote_average">Vote average: %s</string>
     <string name="top_rated_release">Release: %s</string>
+    <string name="button_closed">Button closed</string>
 </resources>

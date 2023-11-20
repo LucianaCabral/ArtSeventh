@@ -64,7 +64,7 @@ internal class SearchDetailsActivity : AppCompatActivity(R.layout.activity_searc
 
     private fun initView() {
         with(binding) {
-            imgDetails.load("https://image.tmdb.org/t/p/w500${args?.posterPath}")
+            imgDetails.load(getString(R.string.details_uri_image) + args?.backdropPath)
             tvNameDetails.text = args?.name
             tvOverviewDetails.text = args?.overview
             tvOriginalLanguageDetails.text =
@@ -92,7 +92,7 @@ internal class SearchDetailsActivity : AppCompatActivity(R.layout.activity_searc
                 String.format(getString(R.string.search_adult), args?.adult?.toStringAnswer())
             tvVideo.text = String.format(getString(R.string.search_video), args?.video?.toStringAnswer())
             tvTitleMovieDetails.text = args?.name
-            imgBackdropDetails.load(getString(R.string.details_uri_image) + args?.backdropPath)
+            imgBackdropDetails.load(getString(R.string.details_uri_image) + args?.posterPath)
             tvPopularityDetails.text =
                 String.format(getString(R.string.search_popularity), args?.popularity)
             tvOriginalLanguageDetails.text =
@@ -102,6 +102,10 @@ internal class SearchDetailsActivity : AppCompatActivity(R.layout.activity_searc
                 args?.originalTitle
             )
             dialog.show()
+
+            closeBtn.setOnClickListener {
+                dialog.dismiss()
+            }
         }
     }
 
