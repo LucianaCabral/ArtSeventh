@@ -94,7 +94,6 @@ internal class PopularFragment : Fragment(R.layout.fragment_popular) {
         )
     }
 
-
     companion object {
         fun newInstance(): PopularFragment = PopularFragment()
     }

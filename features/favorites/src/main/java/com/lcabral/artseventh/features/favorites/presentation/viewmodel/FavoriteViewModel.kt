@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lcabral.artseventh.core.domain.model.Movie
-import com.lcabral.artseventh.core.domain.model.usecase.DeleteFavoriteUseCase
-import com.lcabral.artseventh.core.domain.model.usecase.GetFavoritesMoviesUseCase
+import com.lcabral.artseventh.core.domain.usecase.DeleteFavoriteUseCase
+import com.lcabral.artseventh.core.domain.usecase.GetFavoritesMoviesUseCase
 import com.lcabral.artseventh.features.favorites.R
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn

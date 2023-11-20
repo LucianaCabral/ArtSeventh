@@ -1,7 +1,7 @@
-package com.lcabral.artseventh.core.domain.model.usecase
+package com.lcabral.artseventh.core.domain.usecase
 
 import com.lcabral.artseventh.core.domain.model.Movie
-import com.lcabral.artseventh.core.domain.model.repository.MovieRepository
+import com.lcabral.artseventh.core.domain.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
 
 class GetUpcomingUseCase(

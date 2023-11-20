@@ -1,20 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:backgroundTint="@android:color/transparent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/title_page_top_rated"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimen_16"
         android:layout_marginTop="@dimen/dimen_8"
         android:text="@string/_about_top_rated"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/font_size_24" />
+        android:textSize="@dimen/font_size_24"
+        app:layout_constraintBottom_toTopOf="@id/img_details"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/close_btn"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/button_closed"
+        android:src="@drawable/ic_close"
+        android:layout_marginEnd="@dimen/dimen_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/img_details"
@@ -25,6 +38,9 @@
         android:layout_marginEnd="@dimen/dimen_16"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_page_top_rated"
         tools:src="@tools:sample/backgrounds/scenic" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -36,6 +52,9 @@
         android:layout_marginTop="@dimen/dimen_8"
         android:textColor="@android:color/white"
         android:textSize="@dimen/font_size_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_details"
         tools:text="Spider Man" />
 
     <View
@@ -46,7 +65,10 @@
         android:layout_marginTop="@dimen/dimen_8"
         android:layout_marginEnd="@dimen/dimen_16"
         android:layout_marginBottom="@dimen/dimen_8"
-        android:background="@android:color/white" />
+        android:background="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_details" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_overview_label"
@@ -58,7 +80,10 @@
         android:layout_marginEnd="@dimen/dimen_16"
         android:text="@string/top_rated_overview"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/font_size_18" />
+        android:textSize="@dimen/font_size_18"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_movie_details" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_overview_details"
@@ -71,16 +96,23 @@
         android:layout_marginBottom="@dimen/dimen_8"
         android:textColor="@android:color/white"
         android:textSize="@dimen/font_size_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_overview_label"
         tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electro" />
 
     <View
+        android:id="@+id/view_line_2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="@dimen/dimen_16"
         android:layout_marginTop="@dimen/dimen_8"
         android:layout_marginEnd="@dimen/dimen_16"
         android:layout_marginBottom="@dimen/dimen_8"
-        android:background="@android:color/white" />
+        android:background="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_overview_details" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_release_details"
@@ -92,6 +124,9 @@
         android:layout_marginEnd="@dimen/dimen_8"
         android:textColor="@android:color/white"
         android:textSize="@dimen/font_size_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_line_2"
         tools:text="11-03-2023" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -104,6 +139,7 @@
         android:layout_marginEnd="@dimen/dimen_8"
         android:textColor="@android:color/white"
         android:textSize="@dimen/font_size_16"
+        app:layout_constraintTop_toBottomOf="@id/tv_release_details"
         tools:text="5" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -118,5 +154,8 @@
         android:textAlignment="inherit"
         android:textColor="@android:color/white"
         android:textSize="@dimen/font_size_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_vote_count_details"
         tools:text="5.1" />
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

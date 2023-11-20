@@ -1,7 +1,7 @@
 package com.lcabral.artseventh.features.toprated.di
 
 import com.lcabral.artseventh.core.common.navigation.TopRatedNavigation
-import com.lcabral.artseventh.core.domain.model.usecase.GetTopRatedUseCase
+import com.lcabral.artseventh.core.domain.usecase.GetTopRatedUseCase
 import com.lcabral.artseventh.features.toprated.navigation.TopRatedNavigationImpl
 import com.lcabral.artseventh.features.toprated.presentation.viewmodel.TopRatedViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel

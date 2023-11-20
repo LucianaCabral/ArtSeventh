@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.lcabral.artseventh.core.domain.model.Movie
-import com.lcabral.artseventh.core.domain.model.usecase.IsFavoritesMoviesUseCase
+import com.lcabral.artseventh.core.domain.usecase.IsFavoritesMoviesUseCase
 import com.lcabral.artseventh.features.movies.R
 import com.lcabral.artseventh.features.movies.databinding.ItemMovieBinding
 import kotlinx.coroutines.CoroutineScope
@@ -44,7 +44,6 @@ internal class MovieViewHolder(
         job = CoroutineScope(Dispatchers.IO).launch {
             val isFavorite: Boolean = isFavoritesMoviesUseCase(id)
             addFavoriteCheckbox.isChecked = isFavorite
-            println("<LU> MovieViewHolder.setFavorite $isFavorite")
         }
     }
 

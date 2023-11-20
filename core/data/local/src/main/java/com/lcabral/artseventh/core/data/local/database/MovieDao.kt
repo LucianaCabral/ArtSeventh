@@ -10,15 +10,13 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MovieDao {
-    // recebe um parametro, enytao pode receber um long
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFavorite(movieEntity: MovieEntity)
 
     @Query("SELECT * FROM movies WHERE id = :id")
     suspend fun getFavorite(id: Int): MovieEntity?
 
-    //nao uso suspend pq ele já suspend  é automaticamente já que é flow
-    //  STREAM OF DATA - exibe todos os filmes por id -
     @Query("SELECT * FROM movies")
     fun getAllFavorites(): Flow<List<MovieEntity>>
 
