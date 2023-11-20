@@ -14,7 +14,5 @@ dependencies {
     implementation project(Modules.domain)
     implementation project(Modules.local)
     implementation project(Modules.remote)
-
-    // Libs
-    implementation(Libs.roomKtx)
+    implementation project(Modules.archLibs)
 }

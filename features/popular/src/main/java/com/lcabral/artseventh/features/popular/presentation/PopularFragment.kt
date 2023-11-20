@@ -89,10 +89,10 @@ internal class PopularFragment : Fragment(R.layout.fragment_popular) {
                 voteCount = movie.voteCount,
                 video = movie.video,
                 popularity = movie.popularity
+
             )
         )
     }
-
 
     companion object {
         fun newInstance(): PopularFragment = PopularFragment()

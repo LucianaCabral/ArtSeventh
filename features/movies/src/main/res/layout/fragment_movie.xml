@@ -7,15 +7,8 @@
     android:layout_height="wrap_content"
     tools:context=".presentation.MovieFragment">
 
-    <ProgressBar
-        android:id="@+id/progressCircular"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <include
+        layout="@layout/include_movie_empty" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/movie_listing"
@@ -30,7 +23,7 @@
             android:layout_marginTop="@dimen/dimen_8"
             android:text="@string/movie"
             android:textColor="@color/white"
-            android:textSize="@dimen/font_size_18"
+            android:textSize="@dimen/font_size_24"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +33,10 @@
             android:id="@+id/recycler_movie"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_16"
+            android:layout_marginBottom="@dimen/dimen_16"
             android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dimen_12"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -1,12 +1,11 @@
 package com.lcabral.artseventh.features.popular.presentation.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lcabral.artseventh.core.domain.model.Movie
-import com.lcabral.artseventh.core.domain.model.usecase.GetPopularUseCase
+import com.lcabral.artseventh.core.domain.usecase.GetPopularUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
@@ -44,7 +43,6 @@ internal class PopularViewModel(
         _viewState.value = PopularViewState(
             flipperChild = SUCCESS_CHILD, getPopularResultItems = popularResults
         )
-        Log.d("<LuuPOpular>", "handleTrendingsSuccess:${popularResults} ")
     }
 
     private fun handleError() {

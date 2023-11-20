@@ -76,7 +76,9 @@ internal class SearchActivity : AppCompatActivity(R.layout.activity_search) {
         )
         startActivity(intent)
 
-        println("<La> ${search.posterPath}, ${search.name}")
+        println("<La> ${search.posterPath}, ${search.name}, ${search.release}," +
+                "${search.popularity} ")
+
     }
 
     private fun setupRecyclerView() = with(binding) {

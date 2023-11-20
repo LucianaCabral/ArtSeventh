@@ -17,9 +17,8 @@ dependencies {
     implementation project(Modules.navigation)
     implementation project(Modules.hub)
 
-
     // Libs
     implementation(Libs.coil)
     implementation(Libs.glide)
+    implementation(Libs.timber)
 }
-

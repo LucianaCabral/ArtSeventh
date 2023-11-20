@@ -1,7 +1,6 @@
 package com.lcabral.artseventh.features.movies.presentation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.lcabral.artseventh.core.common.navigation.DetailsNavigation
 import com.lcabral.artseventh.core.common.navigation.MovieArgs
 import com.lcabral.artseventh.core.domain.model.Movie
+import com.lcabral.artseventh.core.domain.usecase.IsFavoritesMoviesUseCase
 import com.lcabral.artseventh.features.movies.R
 import com.lcabral.artseventh.features.movies.databinding.FragmentMovieBinding
 import com.lcabral.artseventh.features.movies.presentation.adapter.MovieAdapter
@@ -24,9 +24,11 @@ internal class MovieFragment : Fragment(R.layout.fragment_movie) {
     private var _binding: FragmentMovieBinding? = null
     private val binding get() = _binding!!
     private val viewModel: MovieViewModel by viewModel()
-    private val movieAdapter by lazy { MovieAdapter { viewModel.onAdapterItemClicked(it) } }
     private val detailsNavigation: DetailsNavigation by inject()
-
+    private val isFavoriteUseCase: IsFavoritesMoviesUseCase by inject()
+    private val movieAdapter by lazy {
+        MovieAdapter(isFavoriteUseCase, viewModel::onAdapterItemClicked)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -42,6 +44,7 @@ internal class MovieFragment : Fragment(R.layout.fragment_movie) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupRecyclerView()
         setupObservers()
     }
@@ -49,7 +52,6 @@ internal class MovieFragment : Fragment(R.layout.fragment_movie) {
     private fun setupObservers() {
         viewModel.viewState.observe(viewLifecycleOwner) { state ->
             updateList(state.getMoviesResultItems)
-            Log.d("<LMovie>", "setupObservers:${state.getMoviesResultItems} ")
             flipperContainerState(state.flipperChild)
         }
 

@@ -13,4 +13,11 @@ dependencies {
     //Modules
     implementation project(Modules.header)
     implementation project(Modules.navigation)
+    implementation project(Modules.archLibs)
+    implementation project(Modules.movies)
+    implementation project(Modules.popular)
+    implementation project(Modules.remote)
+    implementation project(Modules.topRated)
+    implementation project(Modules.trending)
+    implementation project(Modules.upcoming)
 }

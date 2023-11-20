@@ -30,7 +30,7 @@
             android:layout_marginTop="@dimen/dimen_8"
             android:text="@string/popular_Title_screen"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/font_size_18"
+            android:textSize="@dimen/font_size_24"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

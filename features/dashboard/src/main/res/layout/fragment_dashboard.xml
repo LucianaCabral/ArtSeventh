@@ -9,9 +9,7 @@
     android:orientation="vertical"
     tools:context=".presentation.DashboardFragment">
 
-    <include
-        android:id="@+id/header_container"
-        layout="@layout/fragment_header" />
+    <include layout="@layout/fragment_header" />
 
     <View
         android:id="@+id/view_line"
@@ -40,19 +38,9 @@
                     android:id="@+id/movie_container"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="@+id/popular_container"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:layout_height="96dp" />
-
-                <androidx.fragment.app.FragmentContainerView
-                    android:id="@+id/popular_container"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/movie_container" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.fragment.app.FragmentContainerView
                     android:id="@+id/trending_container"
@@ -60,7 +48,17 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/popular_container" />
+                    app:layout_constraintTop_toBottomOf="@id/movie_container"
+                    tools:layout="@layout/fragment_trending" />
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/popular_container"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/trending_container"
+                    tools:layout="@layout/fragment_popular" />
 
                 <androidx.fragment.app.FragmentContainerView
                     android:id="@+id/upcoming_container"
@@ -68,15 +66,18 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/trending_container" />
+                    app:layout_constraintTop_toBottomOf="@id/popular_container"
+                    tools:layout="@layout/fragment_top_rated" />
+
                 <androidx.fragment.app.FragmentContainerView
                     android:id="@+id/top_rated_container"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_24"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/upcoming_container"
-                    android:layout_marginBottom="@dimen/dimen_24" />
+                    tools:layout="@layout/fragment_top_rated" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>

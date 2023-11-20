@@ -1,15 +1,15 @@
 package com.lcabral.artseventh.core.data.hub.repository
 
+import com.lcabral.artseventh.core.data.local.source.LocalDataSource
 import com.lcabral.artseventh.core.data.remote.source.RemoteDataSource
 import com.lcabral.artseventh.core.domain.model.Movie
-import com.lcabral.artseventh.core.domain.model.repository.MovieRepository
+import com.lcabral.artseventh.core.domain.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
 
 internal class MovieRepositoryImpl(
     private val remoteDataSource: RemoteDataSource,
-//    private val localDataSource: LocalDataSource,
-
-    ): MovieRepository{
+    private val localDataSource: LocalDataSource,
+) : MovieRepository {
     override fun getMovies(): Flow<List<Movie>> {
         return remoteDataSource.getMovies()
     }
@@ -30,15 +30,24 @@ internal class MovieRepositoryImpl(
         return remoteDataSource.upcoming()
     }
 
-//    override suspend fun insertMovie(movie: Movie): Long {
-//       return localDataSource.insertMovie(movie)
-//    }
-//
-//    override fun getAll(): Flow<List<Movie>> {
-//        return localDataSource.getAll()
-//    }
-//
-//    override suspend fun delete(movie: Movie) {
-//        return localDataSource.delete(movie)
-//    }
+    override suspend fun addToFavorites(movie: Movie) {
+        return localDataSource.addToFavorite(movie)
+    }
+
+    override suspend fun isFavorite(id: Int): Boolean {
+        return localDataSource.isFavorite(id).apply {
+        }
+    }
+
+    override fun getAllFavorites(): Flow<List<Movie>> {
+        return localDataSource.getFavoritesMovies()
+    }
+
+    override suspend fun deleteFavorite(movie: Movie) {
+        return localDataSource.deleteFromFavorite(movie)
+    }
+
+    override fun getDetails(): Flow<List<Movie>> {
+        return remoteDataSource.getDetails()
+    }
 }

@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lcabral.artseventh.core.domain.model.Movie
-import com.lcabral.artseventh.core.domain.model.usecase.GetTrendingUseCase
+import com.lcabral.artseventh.core.domain.usecase.GetTrendingUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch

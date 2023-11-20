@@ -15,7 +15,6 @@ internal class RemoteDataSourceImpl(
         return flow {
             emit(service.getMovie().toMovie())
         }
-
     }
 
     override fun getPopular(): Flow<List<Movie>> {
@@ -39,6 +38,12 @@ internal class RemoteDataSourceImpl(
     override fun upcoming(): Flow<List<Movie>> {
         return flow {
             emit(service.getUpcoming().toMovie())
+        }
+    }
+
+    override fun getDetails(): Flow<List<Movie>> {
+        return flow {
+            emit(service.getDetails().toMovie())
         }
     }
 }

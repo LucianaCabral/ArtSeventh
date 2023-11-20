@@ -1,19 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@android:color/transparent"
-    android:orientation="vertical">
+    android:backgroundTint="@android:color/transparent">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/id_movie"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimen_16"
         android:layout_marginTop="@dimen/dimen_8"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/font_size_24" />
+        android:textSize="@dimen/font_size_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/close_btn"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="@dimen/dimen_16"
+        android:contentDescription="@string/close_button"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/img_backdrop_details"
@@ -23,6 +36,9 @@
         android:layout_marginTop="@dimen/dimen_16"
         android:layout_marginEnd="@dimen/dimen_16"
         android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/id_movie"
         tools:src="@tools:sample/backgrounds/scenic" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -34,6 +50,9 @@
         android:layout_marginTop="@dimen/dimen_8"
         android:textColor="@android:color/white"
         android:textSize="@dimen/font_size_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_backdrop_details"
         tools:text="Spider Man" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -41,13 +60,16 @@
         style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dimen_8"
         android:layout_marginStart="@dimen/dimen_16"
         android:layout_marginTop="@dimen/dimen_16"
         android:layout_marginEnd="@dimen/dimen_16"
+        android:layout_marginBottom="@dimen/dimen_8"
         android:textColor="@android:color/white"
-        tools:text="Sim"
-        android:textSize="@dimen/font_size_18"/>
+        android:textSize="@dimen/font_size_18"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_movie_details"
+        tools:text="Sim" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_popularity_details"
@@ -55,9 +77,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimen_16"
+        android:layout_marginEnd="@dimen/dimen_16"
         android:textAlignment="inherit"
         android:textColor="@android:color/white"
         android:textSize="@dimen/font_size_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_video"
         tools:text="Sim" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -70,7 +96,11 @@
         android:textAlignment="inherit"
         android:textColor="@android:color/white"
         android:textSize="@dimen/font_size_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_popularity_details"
         tools:text="english" />
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_adult_details"
         style="@style/TextAppearance.MaterialComponents.Caption"
@@ -79,7 +109,11 @@
         android:layout_marginStart="@dimen/dimen_16"
         android:layout_marginEnd="@dimen/dimen_8"
         android:textColor="@color/white"
+        android:background="#8888"
         android:textSize="@dimen/font_size_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_original_language_details"
         tools:text="Sim" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -90,8 +124,10 @@
         android:layout_marginStart="@dimen/dimen_16"
         android:layout_marginEnd="@dimen/dimen_8"
         android:layout_marginBottom="@dimen/dimen_16"
-        android:textAlignment="inherit"
         android:textColor="@color/white"
         android:textSize="@dimen/font_size_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_adult_details"
         tools:text="The Flash" />
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

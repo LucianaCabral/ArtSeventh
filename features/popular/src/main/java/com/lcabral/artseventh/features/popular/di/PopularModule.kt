@@ -1,7 +1,7 @@
 package com.lcabral.artseventh.features.popular.di
 
 import com.lcabral.artseventh.core.common.navigation.PopularNavigation
-import com.lcabral.artseventh.core.domain.model.usecase.GetPopularUseCase
+import com.lcabral.artseventh.core.domain.usecase.GetPopularUseCase
 import com.lcabral.artseventh.features.popular.navigation.PopularNavigationImpl
 import com.lcabral.artseventh.features.popular.presentation.viewmodel.PopularViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel

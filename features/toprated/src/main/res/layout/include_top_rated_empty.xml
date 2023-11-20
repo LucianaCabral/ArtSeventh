@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/dimen_16">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_item"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/dimen_16"
+        app:cardBackgroundColor="@color/black"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintEnd_toStartOf="@id/card_item_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/movie_image"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_movies_placeholder"
+            app:layout_constraintEnd_toEndOf="@id/card_item"
+            app:layout_constraintStart_toStartOf="@id/card_item"
+            app:layout_constraintTop_toTopOf="@id/card_item" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_item_2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:cardBackgroundColor="@color/black"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/card_item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/card_item"
+        app:layout_constraintTop_toTopOf="@id/card_item">
+
+        <ImageView
+            android:id="@+id/movie_image_2"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_movies_placeholder"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/card_item"
+            app:layout_constraintTop_toTopOf="parent" />
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
