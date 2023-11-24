@@ -3,6 +3,8 @@ package com.lcabral.artseventh.features.details.presentation
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
@@ -10,6 +12,7 @@ import com.lcabral.arch.lib.extensions.onBackPressedHandleFragmentActivity
 import com.lcabral.artseventh.core.common.navigation.MovieArgs
 import com.lcabral.artseventh.features.details.R
 import com.lcabral.artseventh.features.details.databinding.ActivityDetailsBinding
+import com.lcabral.artseventh.features.details.presentation.mapper.toMovie
 import com.lcabral.artseventh.features.details.presentation.viewmodel.DetailViewAction
 import com.lcabral.artseventh.features.details.presentation.viewmodel.DetailsViewModel
 import com.lcabral.artseventh.libraries.arch.extensions.parcelable
@@ -24,6 +27,7 @@ internal class DetailsActivity : AppCompatActivity(R.layout.activity_details) {
     private val args: MovieArgs? by lazy { intent.extras?.parcelable(ARGS_MOVIE) }
     private val viewModel: DetailsViewModel by viewModel()
 
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,17 +41,35 @@ internal class DetailsActivity : AppCompatActivity(R.layout.activity_details) {
         setupListeners()
         onHandleBackPressed()
         setupObservables()
+        setupActionListeners()
+        setupDataLocal()
+    }
+
+    private fun setupDataLocal() {
+       viewModel.onGetFavorite()
     }
 
     private fun setupObservables() {
         viewModel.viewState.observe(this) { state ->
-            binding.addFavoriteCheckbox.isChecked = state.isFavoriteChecked
-        }
+            viewModel.onFavorite(state.movie.toMovie())
 
+        }
         viewModel.viewAction.observe(this) { action ->
             when (action) {
                 DetailViewAction.NavigateBack -> finish()
             }
+        }
+    }
+
+    private fun setupActionListeners() = with(binding) {
+//        Log.d("<LU>", "Activity:${viewModel.onFavorite()}")
+//        addFavoriteCheckbox.setOnClickListener { viewModel.onFavorite(s) }
+//        Log.d("<LU>", "Activity:${viewModel.onFavorite()}")
+
+        addFavoriteCheckbox.setOnCheckedChangeListener { _, isChecked ->
+            addFavoriteCheckbox.isChecked = isChecked
+            Log.d("<LU>", "Activity:$isChecked")
+            Toast.makeText(this@DetailsActivity, "clicado", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -95,5 +117,8 @@ internal class DetailsActivity : AppCompatActivity(R.layout.activity_details) {
         includeOrigin.textOriginLanguage.text = String.format(
             getString(R.string.details_original_language), args?.originalLanguage
         )
+        addFavoriteCheckbox.setOnCheckedChangeListener { _, isFavorite ->
+            addFavoriteCheckbox.isChecked = isFavorite
+        }
     }
 }

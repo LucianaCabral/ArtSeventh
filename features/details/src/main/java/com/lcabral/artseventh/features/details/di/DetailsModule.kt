@@ -1,6 +1,10 @@
 package com.lcabral.artseventh.features.details.di
 
 import com.lcabral.artseventh.core.common.navigation.DetailsNavigation
+import com.lcabral.artseventh.core.domain.usecase.DeleteFavoriteUseCase
+import com.lcabral.artseventh.core.domain.usecase.GetFavoritesMoviesUseCase
+import com.lcabral.artseventh.core.domain.usecase.IsFavoritesMoviesUseCase
+import com.lcabral.artseventh.core.domain.usecase.SaveFavoriteMovieUseCase
 import com.lcabral.artseventh.features.details.navigation.DetailsNavigationImpl
 import com.lcabral.artseventh.features.details.presentation.viewmodel.DetailsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -13,7 +17,14 @@ object DetailsModule {
     private val presentationModules: Module = module {
 
         viewModel {
-            DetailsViewModel()
+//                (args: MovieArgs) ->
+            DetailsViewModel(
+                saveFavoriteMovieUseCase = SaveFavoriteMovieUseCase(repository = get()),
+                getFavoritesMoviesUseCase = GetFavoritesMoviesUseCase(repository = get()),
+                isFavoritesMoviesUseCase = IsFavoritesMoviesUseCase(repository = get()),
+                deleteFavoriteUseCase = DeleteFavoriteUseCase(repository = get()),
+//                args = args
+            )
         }
     }
 
