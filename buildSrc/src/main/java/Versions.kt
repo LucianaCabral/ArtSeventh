@@ -38,6 +38,7 @@ object Versions {
     const val roomKtx = "2.4.3"
     const val okhttp = "4.9.1"
     const val okHttpLoggingInterceptor = "4.9.0"
+    const val paging = "3.2.1"
     const val rxJava2 = "3.1.6"
     const val rxJavaAndroid = "2.1.1"
     const val rxJava2Relev = "2.1.1"
