@@ -1,5 +1,8 @@
 package com.lcabral.artseventh.core.data.hub.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.lcabral.artseventh.core.data.local.source.LocalDataSource
 import com.lcabral.artseventh.core.data.remote.source.RemoteDataSource
 import com.lcabral.artseventh.core.domain.model.Movie
@@ -9,9 +12,13 @@ import kotlinx.coroutines.flow.Flow
 internal class MovieRepositoryImpl(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
+    private val config: PagingConfig
 ) : MovieRepository {
-    override fun getMovies(): Flow<List<Movie>> {
-        return remoteDataSource.getMovies()
+    override fun getMovies(): Flow<PagingData<Movie>> {
+        return Pager(
+            config = config,
+            pagingSourceFactory = remoteDataSource::getMoviePagingSource
+        ).flow
     }
 
     override fun getPopular(): Flow<List<Movie>> {

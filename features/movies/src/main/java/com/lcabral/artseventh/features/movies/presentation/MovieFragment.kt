@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagingData
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lcabral.artseventh.core.common.navigation.DetailsNavigation
@@ -67,8 +68,8 @@ internal class MovieFragment : Fragment(R.layout.fragment_movie) {
         binding.flipperContainer.displayedChild = childFlipper
     }
 
-    private fun updateList(movies: List<Movie>?) {
-        movieAdapter.submitList(movies)
+    private fun updateList(movies: PagingData<Movie>?) {
+        movieAdapter.submitData()
     }
 
     private fun setupRecyclerView() {

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import com.lcabral.artseventh.core.domain.model.Movie
 import com.lcabral.artseventh.core.domain.usecase.DeleteFavoriteUseCase
 import com.lcabral.artseventh.core.domain.usecase.GetFavoritesMoviesUseCase
@@ -39,13 +40,12 @@ internal class MovieViewModel(
     }
 
     private fun getMovies() {
-        viewModelScope.launch {
-            movieUseCase.invoke()
-                .flowOn(dispatcher)
-                .onStart { handleLoading() }
-                .catch { handleError() }
-                .collect(::handleMoviesSuccess)
-        }
+        val movies = movieUseCase()
+            .onStart { handleLoading() }
+            .catch { handleError() }
+            .cachedIn(viewModelScope)
+        _viewState.value = MovieStateView(movies = movies)
+
     }
 
 

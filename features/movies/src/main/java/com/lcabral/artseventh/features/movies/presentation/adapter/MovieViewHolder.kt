@@ -22,21 +22,29 @@ internal class MovieViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     private var job: Job? = null
-    fun bindView(movie: Movie) {
+    fun bindView(movie: Movie?) {
         binding.apply {
-            movieTv.text = movie.name
-            Glide.with(itemView.context)
-                .load(itemView.context.getString(R.string.movie_uri_image) + movie.posterPath)
-                .into(movieImage)
+            movieTv.text = movie?.name
+            if (movie != null) {
+                Glide.with(itemView.context)
+                    .load(itemView.context.getString(R.string.movie_uri_image) + movie.posterPath)
+                    .into(movieImage)
+            }
 
             movieImage.setOnClickListener {
-                itemClicked(movieImage.id, movie, false)
+                if (movie != null) {
+                    itemClicked(movieImage.id, movie, false)
+                }
             }
 
             addFavoriteCheckbox.setOnCheckedChangeListener { _, isChecked ->
-                itemClicked(addFavoriteCheckbox.id, movie, isChecked)
+                if (movie != null) {
+                    itemClicked(addFavoriteCheckbox.id, movie, isChecked)
+                }
             }
-            setFavorite(movie.id)
+            if (movie != null) {
+                setFavorite(movie.id)
+            }
         }
     }
 

@@ -21,4 +21,6 @@ dependencies {
     implementation(Libs.coil)
     implementation(Libs.glide)
     implementation(Libs.timber)
+    implementation(Libs.paging)
+    implementation 'androidx.paging:paging-runtime-ktx:3.2.1'
 }
