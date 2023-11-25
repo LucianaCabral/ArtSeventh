@@ -23,8 +23,8 @@ class MoviePagingSource(
         }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
-        val page = params.key ?: STARTING_PAGE_INDEX
-        val range = page.until(page + params.loadSize)
+        val position = params.key ?: STARTING_PAGE_INDEX
+        val range = position.until(position + params.loadSize)
 
         return LoadResult.Page(
             // TODO("data = Uma lista de itens buscados")
@@ -45,9 +45,9 @@ class MoviePagingSource(
                     video = false
                 )
             },
-            prevKey = when(page) {
+            prevKey = when(position) {
                 STARTING_PAGE_INDEX -> null
-                else -> page.dec()
+                else -> position.dec()
             },
             nextKey = range.last + 1
         )
