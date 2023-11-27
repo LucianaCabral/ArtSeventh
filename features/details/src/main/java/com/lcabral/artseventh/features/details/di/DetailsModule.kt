@@ -1,6 +1,7 @@
 package com.lcabral.artseventh.features.details.di
 
 import com.lcabral.artseventh.core.common.navigation.DetailsNavigation
+import com.lcabral.artseventh.core.common.navigation.MovieArgs
 import com.lcabral.artseventh.core.domain.usecase.DeleteFavoriteUseCase
 import com.lcabral.artseventh.core.domain.usecase.GetFavoritesMoviesUseCase
 import com.lcabral.artseventh.core.domain.usecase.IsFavoritesMoviesUseCase
@@ -17,13 +18,13 @@ object DetailsModule {
     private val presentationModules: Module = module {
 
         viewModel {
-//                (args: MovieArgs) ->
+                (args: MovieArgs?) ->
             DetailsViewModel(
                 saveFavoriteMovieUseCase = SaveFavoriteMovieUseCase(repository = get()),
                 getFavoritesMoviesUseCase = GetFavoritesMoviesUseCase(repository = get()),
                 isFavoritesMoviesUseCase = IsFavoritesMoviesUseCase(repository = get()),
                 deleteFavoriteUseCase = DeleteFavoriteUseCase(repository = get()),
-//                args = args
+                args = args
             )
         }
     }
