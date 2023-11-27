@@ -21,4 +21,4 @@ Find more details and instructions on how to obtain the key [here](https://devel
 
 ## Screens
 
-![screenshot](C:\Users\englu\Downloads\Screenshot_movie.png)
+![screenshot](screenshot.png)
