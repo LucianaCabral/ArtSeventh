@@ -1,6 +1,7 @@
 object Versions {
     const val appCompat = "1.6.1"
-    const val androidJunit = "1.1.5"
+    const val extJunit = "1.1.3"
+    const val androidxJunit_version = "1.1.3"
     const val coreKtx = "1.7.0"
     const val coroutinesAndroid = "1.6.4"
     const val coroutinesCore = "1.6.4"
@@ -26,6 +27,7 @@ object Versions {
     const val kotlinTest = "1.1.0"
     const val jUnitVersion = "4.13.2"
     const val turbine = "0.5.2"
+    const val junit ="4.12"
     const val junitKtx = "1.1.3"
     const val material = "1.8.0"
     const val mockk = "1.12.4"

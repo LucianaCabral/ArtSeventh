@@ -4,12 +4,13 @@ dependencies {
     testImplementation(TestLibs.coroutineTest)
     testImplementation(TestLibs.turbine)
     testImplementation(TestLibs.koinJunit4)
-    testImplementation(TestLibs.junitKtx)
     testImplementation(TestLibs.coreTesting)
     testImplementation(TestLibs.mockk)
     testImplementation(TestLibs.kotlinTest)
 
     //Test android
-    androidTestImplementation(TestLibs.androidJunit)
+    androidTestImplementation(TestLibs.extJunit)
+    androidTestImplementation(TestLibs.jUnitVersion)
+    androidTestImplementation(TestLibs.extJunit)
     androidTestImplementation(TestLibs.espressoCore)
 }
