@@ -16,6 +16,7 @@ dependencies {
     implementation project(Modules.dsTools)
     implementation project(Modules.navigation)
     implementation project(Modules.hub)
+    implementation project(Modules.remote)
 
     // Libs
     implementation(Libs.coil)
