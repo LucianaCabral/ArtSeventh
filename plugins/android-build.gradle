@@ -48,4 +48,7 @@ dependencies {
     implementation(Libs.swipeRefreshLayout)
     implementation(Libs.glideCompiler)
     implementation(Libs.glideAnnotationProcessor)
+    implementation(Libs.retrofitGsonConverter)
+    implementation(Libs.retrofit)
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.4.0"
 }

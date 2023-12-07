@@ -15,4 +15,5 @@ dependencies {
     implementation project(Modules.local)
     implementation project(Modules.remote)
     implementation project(Modules.archLibs)
+    implementation 'androidx.test:core-ktx:1.5.0'
 }

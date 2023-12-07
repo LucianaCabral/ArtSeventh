@@ -3,8 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
-apply from: "$rootDir/pl" +
-        "ugins/android-build.gradle"
+apply from: "$rootDir/plugins/android-build.gradle"
 
 android {
     namespace 'com.lcabral.artseventh.libraries.arch'
