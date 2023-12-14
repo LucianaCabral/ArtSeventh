@@ -8,6 +8,7 @@ object Libs {
     const val swipeRefreshLayout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
     const val splashScreenCore = "androidx.core:core-splashscreen:${Versions.splashScreenCore}"
     const val paging = "androidx.paging:paging-common-ktx:${Versions.paging}"
+    const val pagingRunTimeKtx = "androidx.paging:paging-runtime-ktx:${Versions.pagingRunTimeKtx}"
 
     // Kotlin
     const val kotlinVersion = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlinVersion}"

@@ -1,5 +1,6 @@
 package com.lcabral.artseventh.core.data.hub.source
 
+import com.lcabral.artseventh.core.data.remote.model.MovieResponse
 import com.lcabral.artseventh.core.data.remote.model.toMovie
 import com.lcabral.artseventh.core.data.remote.paging.MoviePagingSource
 import com.lcabral.artseventh.core.data.remote.service.MovieService
@@ -12,9 +13,11 @@ internal class RemoteDataSourceImpl(
     private val service: MovieService
 ) : RemoteDataSource {
 
-    override fun getMovies(): Flow<List<Movie>> {
-        return flow { emit(service.getMovie().toMovie()) }
-    }
+//    override fun getMovies(): Flow<List<Movie>> {
+//        return flow { emit(service.getMovie().toMovie()) }
+//    }
+
+    override suspend fun getMovies(page: Int): MovieResponse = service.getMovie(page)
 
     override fun getPopular(): Flow<List<Movie>> {
         return flow { emit(service.getPopular().toMovie()) }

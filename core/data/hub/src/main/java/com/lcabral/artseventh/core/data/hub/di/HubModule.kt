@@ -7,7 +7,6 @@ import com.lcabral.artseventh.core.data.local.database.MovieDataBase
 import com.lcabral.artseventh.core.data.remote.HttpClient
 import com.lcabral.artseventh.core.data.remote.service.MovieService
 import com.lcabral.artseventh.core.domain.repository.MovieRepository
-import org.koin.core.scope.Scope
 import org.koin.dsl.module
 
 object HubModule {
@@ -17,9 +16,7 @@ object HubModule {
         factory<MovieRepository> {
             MovieRepositoryImpl(
                 remoteDataSource = RemoteDataSourceImpl(
-                    service = get<HttpClient>().create(
-                        clazz = MovieService::class.java,
-                    )
+                    service = get<HttpClient>().create(clazz = MovieService::class.java,)
                 ),
 
                 localDataSource = LocalDataSourceImpl(

@@ -13,11 +13,15 @@ import com.lcabral.artseventh.core.domain.usecase.SaveFavoriteMovieUseCase
 import com.lcabral.artseventh.features.movies.R
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import timber.log.Timber
+
+private const val ITEMS_PER_PAGE = 20
+
 
 internal class MovieViewModel(
     private val movieUseCase: GetMovieUseCase,
@@ -28,8 +32,11 @@ internal class MovieViewModel(
 
     ) : ViewModel() {
 
-    private val _viewState: MutableLiveData<MovieStateView> = MutableLiveData<MovieStateView>()
-    val viewState: LiveData<MovieStateView> = _viewState
+    private val _viewState: MutableStateFlow<MovieStateView> = MutableStateFlow(MovieStateView())
+    val viewState: StateFlow<MovieStateView> = _viewState
+
+//    private val _viewState: MutableLiveData<MovieStateView> = MutableLiveData<MovieStateView>()
+//    val viewState: LiveData<MovieStateView> = _viewState
 
     private val _viewAction: MutableLiveData<MovieViewAction> = MutableLiveData<MovieViewAction>()
     val viewAction: LiveData<MovieViewAction> = _viewAction
@@ -58,12 +65,12 @@ internal class MovieViewModel(
         _viewAction.value = MovieViewAction.ShowError
     }
 
-    private fun handleMoviesSuccess(movieResults: List<Movie>) {
-        _viewState.value = MovieStateView(
-            flipperChild = SUCCESS_CHILD,
-            getMoviesResultItems = movieResults
-        )
-    }
+//    private fun handleMoviesSuccess(movies: Flow<PagingData<Movie>>) {
+//        _viewState.value = MovieStateView(
+//            flipperChild = SUCCESS_CHILD,
+//            movies = movies
+//        )
+//    }
 
     private fun getFavoriteMovies() {
         viewModelScope.launch {

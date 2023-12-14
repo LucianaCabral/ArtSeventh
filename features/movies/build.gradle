@@ -16,11 +16,13 @@ dependencies {
     implementation project(Modules.dsTools)
     implementation project(Modules.navigation)
     implementation project(Modules.hub)
+    implementation project(Modules.remote)
 
     // Libs
     implementation(Libs.coil)
     implementation(Libs.glide)
     implementation(Libs.timber)
     implementation(Libs.paging)
-    implementation 'androidx.paging:paging-runtime-ktx:3.2.1'
+    implementation(Libs.pagingRunTimeKtx)
+
 }

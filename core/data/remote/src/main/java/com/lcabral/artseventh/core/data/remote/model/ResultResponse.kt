@@ -55,3 +55,9 @@ data class ResultResponse(
 fun MovieResponse.toMovie() = results.map {
     it.toMovie()
 }
+
+fun List<ResultResponse>.toMovies(): List<Movie> {
+    return this.map {
+        it.toMovie()
+    }
+}
