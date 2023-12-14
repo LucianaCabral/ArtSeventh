@@ -15,6 +15,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
@@ -32,11 +33,11 @@ internal class MovieViewModel(
 
     ) : ViewModel() {
 
-    private val _viewState: MutableStateFlow<MovieStateView> = MutableStateFlow(MovieStateView())
-    val viewState: StateFlow<MovieStateView> = _viewState
+    private val _state: MutableStateFlow<MovieStateView> = MutableStateFlow(MovieStateView())
+    val state: StateFlow<MovieStateView> = _state.asStateFlow()
 
-//    private val _viewState: MutableLiveData<MovieStateView> = MutableLiveData<MovieStateView>()
-//    val viewState: LiveData<MovieStateView> = _viewState
+    private val _viewState: MutableLiveData<MovieStateView> = MutableLiveData()
+    val viewState: LiveData<MovieStateView> = _viewState
 
     private val _viewAction: MutableLiveData<MovieViewAction> = MutableLiveData<MovieViewAction>()
     val viewAction: LiveData<MovieViewAction> = _viewAction
@@ -48,16 +49,17 @@ internal class MovieViewModel(
 
     private fun getMovies() {
         val movies = movieUseCase()
-            .onStart { handleLoading() }
+            .onStart { }
+//            .onCompletion { _state.value = MovieStateView(flipperChild = SUCCESS_CHILD) }
             .catch { handleError() }
             .cachedIn(viewModelScope)
-        _viewState.value = MovieStateView(movies = movies)
-
+        _state.value = _state.value.copy(movies = movies)
     }
 
 
+
     private fun handleLoading() {
-        MovieStateView(flipperChild = LOADING_CHILD, getMoviesResultItems = null)
+        MovieStateView(flipperChild = LOADING_CHILD)
     }
 
     private fun handleError() {
@@ -66,10 +68,7 @@ internal class MovieViewModel(
     }
 
 //    private fun handleMoviesSuccess(movies: Flow<PagingData<Movie>>) {
-//        _viewState.value = MovieStateView(
-//            flipperChild = SUCCESS_CHILD,
-//            movies = movies
-//        )
+//        _viewState.value = _viewState.value.copy(movies = movies, flipperChild = SUCCESS_CHILD)
 //    }
 
     private fun getFavoriteMovies() {
