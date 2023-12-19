@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -58,16 +57,18 @@ internal class MovieFragment : Fragment(R.layout.fragment_movie) {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.value.movies.collect {
+                    flipperContainerState(viewModel.state.value.flipperChild)
                     movieAdapter.submitData(it)
                 }
             }
-            Toast.makeText(requireContext(), "populou", Toast.LENGTH_LONG).show()
         }
 
-        viewModel.viewAction.observe(viewLifecycleOwner) { action ->
-            when (action) {
-                MovieViewAction.ShowError -> showError()
-                is MovieViewAction.GoToDetails -> goToMoviesDetails(action.movie)
+       lifecycleScope.launch {
+            viewModel.action.collect { action ->
+                when (action) {
+                    MovieViewAction.ShowError -> showError()
+                    is MovieViewAction.GoToDetails -> goToMoviesDetails(action.movie)
+                }
             }
         }
     }
