@@ -2,6 +2,7 @@ package com.lcabral.artseventh.core.domain.usecase
 
 import app.cash.turbine.test
 import com.lcabral.artseventh.core.domain.repository.MovieRepository
+import com.lcabral.artseventh.core.domain.usecase.Stub.pagingData
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -20,7 +21,7 @@ internal class GetMovieUseCaseTest {
     @Test
     fun `GetMovies Should return movies`() = runBlocking {
         // Given
-        val result = Stub.getMovies()
+        val result = pagingData
 
         every { repository.getMovies() } returns flow { emit(result) }
 
