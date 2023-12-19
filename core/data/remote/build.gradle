@@ -31,4 +31,5 @@ dependencies {
     implementation(Libs.okHttpLoggingInterceptor)
     implementation(Libs.retrofit)
     implementation(Libs.retrofitGsonConverter)
+    api(Libs.paging)
 }

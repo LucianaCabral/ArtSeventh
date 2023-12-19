@@ -1,5 +1,6 @@
 package com.lcabral.artseventh.core.data.hub.di
 
+import androidx.paging.PagingConfig
 import com.lcabral.artseventh.core.data.hub.repository.MovieRepositoryImpl
 import com.lcabral.artseventh.core.data.hub.source.LocalDataSourceImpl
 import com.lcabral.artseventh.core.data.hub.source.RemoteDataSourceImpl
@@ -16,14 +17,13 @@ object HubModule {
         factory<MovieRepository> {
             MovieRepositoryImpl(
                 remoteDataSource = RemoteDataSourceImpl(
-                    service = get<HttpClient>().create(
-                        clazz = MovieService::class.java
-                    )
+                    service = get<HttpClient>().create(clazz = MovieService::class.java)
                 ),
 
                 localDataSource = LocalDataSourceImpl(
-                    movieDao = get<MovieDataBase>().movieDao()
-                )
+                    movieDao = get<MovieDataBase>().movieDao(),
+                ),
+                config = PagingConfig(pageSize = 20)
             )
         }
     }

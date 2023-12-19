@@ -16,7 +16,8 @@ object MoviesModule {
     val modules get() = listOf(presentationModule, additionalModules, domainModule)
 
     private val domainModule: Module = module {
-        factory { IsFavoritesMoviesUseCase(get()) }
+
+        factory { IsFavoritesMoviesUseCase(repository = get()) }
     }
 
     private val presentationModule: Module = module {
@@ -27,7 +28,6 @@ object MoviesModule {
                 saveFavoriteUseCase = SaveFavoriteMovieUseCase(repository = get()),
                 getFavoritesUseCase = GetFavoritesMoviesUseCase(repository = get()),
                 deleteFavoriteUseCase = DeleteFavoriteUseCase(repository = get())
-
             )
         }
     }

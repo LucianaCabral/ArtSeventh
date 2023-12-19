@@ -1,12 +1,14 @@
 package com.lcabral.artseventh.core.data.hub.data.repository
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.paging.PagingConfig
 import app.cash.turbine.test
 import com.lcabral.artseventh.core.data.hub.data.repository.MovieStub.movieResponse
 import com.lcabral.artseventh.core.data.hub.repository.MovieRepositoryImpl
 import com.lcabral.artseventh.core.data.hub.source.RemoteDataSourceImpl
 import com.lcabral.artseventh.core.data.hub.commomTest.TestRuleRemote
 import com.lcabral.artseventh.core.domain.repository.MovieRepository
+import io.mockk.mockk
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -26,6 +28,7 @@ class MovieRepositoryImplIntegrationTest {
 
     @OptIn(DelicateCoroutinesApi::class, ExperimentalCoroutinesApi::class)
     private val mainThreadSurrogate = newSingleThreadContext("UI thread")
+    private val config : PagingConfig = mockk()
 
     @get:Rule
     val remoteRule = TestRuleRemote()
@@ -44,7 +47,8 @@ class MovieRepositoryImplIntegrationTest {
             remoteDataSource = RemoteDataSourceImpl(
                 service = remoteRule.createTestService()
             ),
-            localDataSource = remoteRule.createTestService()
+            localDataSource = remoteRule.createTestService(),
+        config = config
         )
     }
 

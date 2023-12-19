@@ -1,7 +1,7 @@
 package com.lcabral.artseventh.features.movies.presentation.adapter
 
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
+import androidx.paging.PagingDataAdapter
 import com.lcabral.artseventh.core.domain.model.Movie
 import com.lcabral.artseventh.core.domain.usecase.IsFavoritesMoviesUseCase
 
@@ -9,7 +9,7 @@ internal class MovieAdapter(
     private val isFavoritesMoviesUseCase: IsFavoritesMoviesUseCase,
     private val itemClicked: MovieItemClicked,
 
-    ) : ListAdapter<Movie, MovieViewHolder>(MovieDiffCallBack()) {
+    ) : PagingDataAdapter<Movie, MovieViewHolder>(MovieDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         return MovieViewHolder.create(parent, itemClicked, isFavoritesMoviesUseCase)

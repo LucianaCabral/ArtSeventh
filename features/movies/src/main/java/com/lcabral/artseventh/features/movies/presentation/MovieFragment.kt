@@ -1,11 +1,13 @@
 package com.lcabral.artseventh.features.movies.presentation
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lcabral.artseventh.core.common.navigation.DetailsNavigation
 import com.lcabral.artseventh.core.common.navigation.MovieArgs
@@ -17,7 +19,9 @@ import com.lcabral.artseventh.features.movies.presentation.adapter.MovieAdapter
 import com.lcabral.artseventh.features.movies.presentation.viewmodel.MovieViewAction
 import com.lcabral.artseventh.features.movies.presentation.viewmodel.MovieViewModel
 import com.lcabral.artseventh.libraries.arch.extensions.showError
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 internal class MovieFragment : Fragment(R.layout.fragment_movie) {
 
@@ -50,25 +54,26 @@ internal class MovieFragment : Fragment(R.layout.fragment_movie) {
     }
 
     private fun setupObservers() {
-        viewModel.viewState.observe(viewLifecycleOwner) { state ->
-            updateList(state.getMoviesResultItems)
-            flipperContainerState(state.flipperChild)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) { viewModel.state.value.movies.collect {
+                    flipperContainerState(viewModel.state.value.flipperChild)
+                    movieAdapter.submitData(it)
+                }
+            }
         }
 
-        viewModel.viewAction.observe(viewLifecycleOwner) { action ->
-            when (action) {
-                MovieViewAction.ShowError -> showError()
-                is MovieViewAction.GoToDetails -> goToMoviesDetails(action.movie)
+       lifecycleScope.launch {
+            viewModel.action.collect { action ->
+                when (action) {
+                    MovieViewAction.ShowError -> showError()
+                    is MovieViewAction.GoToDetails -> goToMoviesDetails(action.movie)
+                }
             }
         }
     }
 
     private fun flipperContainerState(childFlipper: Int) {
         binding.flipperContainer.displayedChild = childFlipper
-    }
-
-    private fun updateList(movies: List<Movie>?) {
-        movieAdapter.submitList(movies)
     }
 
     private fun setupRecyclerView() {

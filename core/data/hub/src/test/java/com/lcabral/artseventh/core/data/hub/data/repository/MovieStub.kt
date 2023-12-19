@@ -11,7 +11,8 @@ internal object MovieStub {
                 backdropPath = "/fm6KqXpk3M2HVveHwCrBSSBaO0V.jpg",
                 originalLanguage = "en",
                 originalTitle = "Oppenheimer",
-                overview = "A história do físico americano J. Robert Oppenheimer, seu papel no Projeto Manhattan e no desenvolvimento da bomba atômica durante a Segunda Guerra Mundial, e o quanto isso mudaria a história do mundo para sempre.",
+                overview = "A história do físico americano J. Robert Oppenheimer, " +
+                        "seu papel no Projeto Manhattan e no desenvolvimento da bomba atômica durante a Segunda Guerra Mundial, e o quanto isso mudaria a história do mundo para sempre.",
                 popularity = 2464.545,
                 id = 872585,
                 posterPath = "/c0DCmfC7Et2K3URnIJ4ahJpeXR2.jpg",

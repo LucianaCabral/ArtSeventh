@@ -22,4 +22,7 @@ dependencies {
     implementation(Libs.coil)
     implementation(Libs.glide)
     implementation(Libs.timber)
+    implementation(Libs.paging)
+    implementation(Libs.pagingRunTimeKtx)
+
 }

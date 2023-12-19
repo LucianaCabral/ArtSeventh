@@ -28,3 +28,7 @@ Find more details and instructions on how to obtain the key [here](https://devel
 
 ## Architecture
 - [Excalibur](https://excalidraw.com/#room=0b63ed548e5149fa774a,RGjr0h95TbwKl2KqGMZEBg)
+
+## Paging
+- [Doc](https://developer.android.com/topic/libraries/architecture/paging/v3-paged-data?hl=pt-br)
+
