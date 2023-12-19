@@ -15,7 +15,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -41,14 +40,13 @@ internal class MovieViewModel(
 
     private fun getMovies() {
         val movies = movieUseCase()
-            .onStart { }
             .catch { handleError() }
             .cachedIn(viewModelScope)
         _state.value = _state.value.copy(movies = movies, flipperChild = SUCCESS_CHILD)
     }
 
     private fun handleError() {
-        _state.value = MovieStateView(flipperChild = FAILURE_CHILD)
+        _state.value = _state.value.copy(flipperChild = FAILURE_CHILD)
         _action.trySend(MovieViewAction.ShowError)
     }
 
@@ -79,20 +77,14 @@ internal class MovieViewModel(
 
     private fun onDeleteFavoriteSuccess(error: Throwable) {
         if (error is Error) {
-            _state.value = MovieStateView(
-                flipperChild = FAILURE_CHILD,
-                message = R.string.delete_error_message
-            )
+            _state.value = _state.value.copy(flipperChild = FAILURE_CHILD)
         }
         Timber.e(error.message, error.toString())
     }
 
     private fun onSaveFavoriteFailure(error: Throwable) {
         if (error is Error) {
-            _state.value = MovieStateView(
-                flipperChild = FAILURE_CHILD,
-                message = R.string.error_message
-            )
+            _state.value = _state.value.copy(flipperChild = FAILURE_CHILD)
         }
         Timber.e(error.message, error.toString())
     }

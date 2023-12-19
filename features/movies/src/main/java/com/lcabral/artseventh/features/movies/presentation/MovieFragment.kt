@@ -55,8 +55,7 @@ internal class MovieFragment : Fragment(R.layout.fragment_movie) {
 
     private fun setupObservers() {
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.state.value.movies.collect {
+            repeatOnLifecycle(Lifecycle.State.STARTED) { viewModel.state.value.movies.collect {
                     flipperContainerState(viewModel.state.value.flipperChild)
                     movieAdapter.submitData(it)
                 }
