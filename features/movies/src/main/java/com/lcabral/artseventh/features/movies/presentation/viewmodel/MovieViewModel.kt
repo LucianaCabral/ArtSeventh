@@ -1,5 +1,6 @@
 package com.lcabral.artseventh.features.movies.presentation.viewmodel
 
+import android.accounts.NetworkErrorException
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
@@ -18,6 +19,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.util.ServiceConfigurationError
 
 internal class MovieViewModel(
     private val movieUseCase: GetMovieUseCase,
@@ -35,22 +37,25 @@ internal class MovieViewModel(
 
     init {
         getMovies()
-        getFavoriteMovies()
     }
 
     private fun getMovies() {
         val movies = movieUseCase()
-            .catch { handleError() }
+            .catch { handleError(it) }
             .cachedIn(viewModelScope)
         _state.value = _state.value.copy(movies = movies, flipperChild = SUCCESS_CHILD)
     }
 
-    private fun handleError() {
-        _state.value = _state.value.copy(flipperChild = FAILURE_CHILD)
-        _action.trySend(MovieViewAction.ShowError)
+    private fun handleError(throwable: Throwable) {
+        if (throwable is Error) {
+            _state.value = _state.value.copy(
+                flipperChild = FAILURE_CHILD,
+                shouldShowError = true, errorMessageRes = throwable.message
+            )
+        }
     }
 
-    private fun getFavoriteMovies() {
+    fun getFavoriteMovies() {
         viewModelScope.launch {
             getFavoritesUseCase()
         }
@@ -77,14 +82,16 @@ internal class MovieViewModel(
 
     private fun onDeleteFavoriteSuccess(error: Throwable) {
         if (error is Error) {
-            _state.value = _state.value.copy(flipperChild = FAILURE_CHILD)
+            _state.value =
+                _state.value.copy(flipperChild = FAILURE_CHILD)
         }
         Timber.e(error.message, error.toString())
     }
 
     private fun onSaveFavoriteFailure(error: Throwable) {
         if (error is Error) {
-            _state.value = _state.value.copy(flipperChild = FAILURE_CHILD)
+            _state.value =
+                _state.value.copy(flipperChild = FAILURE_CHILD)
         }
         Timber.e(error.message, error.toString())
     }

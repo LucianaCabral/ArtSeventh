@@ -1,36 +1,46 @@
 package com.lcabral.artseventh.features.movies.presentation.viewmodel
 
-import androidx.lifecycle.Observer
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import app.cash.turbine.test
 import com.lcabral.artseventh.core.domain.model.Movie
 import com.lcabral.artseventh.core.domain.usecase.DeleteFavoriteUseCase
 import com.lcabral.artseventh.core.domain.usecase.GetFavoritesMoviesUseCase
 import com.lcabral.artseventh.core.domain.usecase.GetMovieUseCase
 import com.lcabral.artseventh.core.domain.usecase.SaveFavoriteMovieUseCase
+import com.lcabral.artseventh.features.movies.R
+import com.lcabral.artseventh.libraries.arch.test.utils.MainDispatcherMainTestRule
+import com.lcabral.artseventh.libraries.arch.test.utils.MovieStub.getMovie
+import com.lcabral.artseventh.libraries.arch.test.utils.MovieStub.pagingData
 import io.mockk.MockKAnnotations
+import io.mockk.Runs
 import io.mockk.clearAllMocks
-import io.mockk.clearMocks
 import io.mockk.coEvery
 import io.mockk.coVerify
+import io.mockk.every
+import io.mockk.just
 import io.mockk.mockk
-import io.mockk.verify
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
+import kotlin.test.assertNotNull
 
 @ExperimentalCoroutinesApi
 @RunWith(JUnit4::class)
 internal class MovieViewModelTest {
 
-    @get:Rule
-    var dispatcherRule = DispatcherTestRule()
+    @get:Rule(order = 1)
+    val mainDispatcherRule = MainDispatcherMainTestRule()
 
-    private val initialState = MovieStateView()
+    @get:Rule
+    val instantTaskExecutorRule = InstantTaskExecutorRule()
 
     private val getMoviesUseCase: GetMovieUseCase = mockk()
     private val saveFavoriteUseCase: SaveFavoriteMovieUseCase = mockk()
@@ -38,13 +48,10 @@ internal class MovieViewModelTest {
     private val getFavoritesUseCase: GetFavoritesMoviesUseCase = mockk()
 
     private lateinit var subject: MovieViewModel
-    private val movieObserver: Observer<List<Movie>> = mockk(relaxed = true)
-    private val movies = MovieStub.getMovies()
 
     @Before
     fun onBefore() {
         MockKAnnotations.init(this, relaxed = true)
-        instantiateViewModel()
     }
 
     @After
@@ -52,51 +59,119 @@ internal class MovieViewModelTest {
         clearAllMocks()
     }
 
-    private fun instantiateViewModel(): MovieViewModel {
+    private fun instantiateViewModel() {
         subject = MovieViewModel(
             getMoviesUseCase,
             saveFavoriteUseCase,
             deleteFavoriteUseCase,
             getFavoritesUseCase
         )
-        movieObserver.onChanged(movies)
-        return subject
     }
 
     @Test
-    fun `init viewModel getMovies get success then sets Movies LiveData`() = runBlocking {
+    fun `getMovies Should show movies When is invoked`() = runTest {
         // Given
-        coEvery { getMoviesUseCase() } returns flow { emit(movies) }
+        every { getMoviesUseCase() } returns flowOf(pagingData)
 
         // When
         instantiateViewModel()
 
         // Then
-        verify { instantiateViewModel().viewState.value }
+        subject.state.test {
+            assertNotNull(awaitItem().movies)
+            cancelAndConsumeRemainingEvents()
+        }
     }
 
     @Test
-    fun `getMovies show list movies`() = runBlocking {
-        // Given
-        coEvery { getMoviesUseCase() } returns flow { emit(movies) }
+    fun `getMovies Should handle error with right message When movies fails and throw NotFoundException`() =
+        runTest {
+            // Given
+            val expectedError = Throwable("Error message")
 
-        //When
+            coEvery { getMoviesUseCase() } throws expectedError
+
+            // When
+            val result = assertFailsWith<Throwable> { instantiateViewModel() }
+
+            // Then
+            assertEquals(expectedError, result)
+        }
+
+    @Test
+    fun `getFavoriteMovies Should add movie to favorites When it is not a favorite`() = runTest {
+        // Given
+        every { getMoviesUseCase() } returns mockk(relaxed = true)
+        every { getFavoritesUseCase() } returns mockk(relaxed = true)
         instantiateViewModel()
 
-        //Then
-        verify { movieObserver.onChanged(movies) }
+        // When
+        subject.getFavoriteMovies()
+
+        // Then
+        coVerify { getMoviesUseCase() }
     }
 
     @Test
-    fun `getMovies Should call observer`() {
+    fun `onAdapterItemClicked Should emit expected action goToDetails`() = runTest {
         // Given
-        clearMocks(movieObserver)
-        coEvery { getMoviesUseCase.invoke() } returns flow { emit(movies) }
-
-        //When
+        val expectedAction = MovieViewAction.GoToDetails(getMovie())
+        every { getMoviesUseCase() } returns mockk(relaxed = true)
         instantiateViewModel()
 
+        // When
+        subject.onAdapterItemClicked(R.id.movie_image, getMovie(), isFavorite = true)
+
         //Then
-        coVerify { movieObserver.onChanged(movies) }
+        subject.action.test {
+            assertEquals(expectedAction, awaitItem())
+            cancelAndIgnoreRemainingEvents()
+        }
+        coVerify { getMoviesUseCase() }
+    }
+
+
+    @Test
+    fun `saveFavorite Should add movie to favorites When it is not a favorite`() = runTest {
+        // Given
+        val movie = mockk<Movie>()
+        every { getMoviesUseCase() } returns mockk(relaxed = true)
+        every { getFavoritesUseCase() } returns mockk(relaxed = true)
+        coEvery { saveFavoriteUseCase(movie) } just Runs
+        instantiateViewModel()
+        // When
+        subject.onAdapterItemClicked(R.id.add_favorite_checkbox, getMovie(), isFavorite = true)
+        saveFavoriteUseCase(movie)
+
+        // Then
+        subject.state.test {
+            assertNotNull(awaitItem().movies)
+            cancelAndConsumeRemainingEvents()
+        }
+        coVerify { saveFavoriteUseCase(movie) }
+        coVerify(exactly = 0) { deleteFavoriteUseCase(movie) }
+    }
+
+    @Test
+    fun `deleteFavorite Should remove movie to favorites When it is a favorite`() = runTest {
+        // Given
+        val movie = mockk<Movie>()
+        every { getMoviesUseCase() } returns mockk(relaxed = true)
+        every { getFavoritesUseCase() } returns mockk(relaxed = true)
+        coEvery { deleteFavoriteUseCase(movie) } just Runs
+        instantiateViewModel()
+
+        // When
+        subject.onAdapterItemClicked(R.id.add_favorite_checkbox, movie, isFavorite = false)
+        deleteFavoriteUseCase(movie)
+
+        subject.state.test {
+            assertNotNull(awaitItem().movies)
+            cancelAndConsumeRemainingEvents()
+        }
+
+        coVerify(exactly = 0) { saveFavoriteUseCase(movie) }
+        coVerify { deleteFavoriteUseCase(movie) }
     }
 }
+

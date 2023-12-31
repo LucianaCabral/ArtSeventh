@@ -20,4 +20,5 @@ dependencies {
     // Libs
     implementation (Libs.glide)
     implementation (Libs.coil)
+    implementation 'org.objenesis:objenesis:3.2'
 }

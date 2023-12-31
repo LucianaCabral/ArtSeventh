@@ -10,5 +10,10 @@ android {
 }
 
 dependencies {
+
+    // Modules
+    implementation project(Modules.domain)
+    implementation(TestLibs.koinTest)
+
     // Libs
 }

@@ -29,17 +29,17 @@ internal class GetTopRatedUseCaseTest {
 
         // Then
         result.test {
-            verify { repository.getTopRated() }
-            assertEquals(expectItem(), expectedResult)
-            expectComplete()
+            assertEquals(expectedResult, awaitItem())
+            cancelAndConsumeRemainingEvents()
         }
+        verify { repository.getTopRated() }
+
     }
 
     @Test
     fun `getTopRated Should return exception when invoked topRated movies`() = runBlocking {
         // Given
         val cause = Throwable()
-        val expectedError = cause::class
 
         every { repository.getTopRated() } returns flow { throw cause }
 
@@ -48,7 +48,7 @@ internal class GetTopRatedUseCaseTest {
 
         // Then
         result.test {
-            assertEquals(expectedError, expectError()::class)
+            assertEquals(cause, awaitError())
         }
         verify { repository.getTopRated() }
     }

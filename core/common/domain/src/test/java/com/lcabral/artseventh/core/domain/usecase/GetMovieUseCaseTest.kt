@@ -8,6 +8,7 @@ import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.time.ExperimentalTime
@@ -30,18 +31,17 @@ internal class GetMovieUseCaseTest {
 
         // Then
         movieResult.test {
-            verify { repository.getMovies() }
-            assertEquals(expectItem(), result)
-            expectComplete()
+            assertEquals(result, awaitItem())
+            cancelAndConsumeRemainingEvents()
         }
+        verify { repository.getMovies() }
+
     }
 
     @Test
-    fun `GetMovies Should return exception when invoked movies`() = runBlocking {
+    fun `GetMovies Should return exception when invoked movies`() = runTest {
         // Given
         val cause = Throwable()
-        val expectedResult = cause::class
-
         every { repository.getMovies() } returns flow { throw cause }
 
         // When
@@ -49,7 +49,7 @@ internal class GetMovieUseCaseTest {
 
         // Then
         result.test {
-            assertEquals(expectedResult, expectError()::class)
+            assertEquals(cause, awaitError())
         }
         verify { repository.getMovies() }
     }

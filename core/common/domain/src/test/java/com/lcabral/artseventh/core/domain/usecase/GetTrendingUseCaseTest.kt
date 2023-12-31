@@ -30,10 +30,11 @@ internal class GetTrendingUseCaseTest {
 
         // Then
         result.test {
-            verify { repository.getTrendings() }
-            assertEquals(expectItem(), expectedResult)
-            expectComplete()
+            assertEquals(expectedResult, awaitItem())
+            cancelAndConsumeRemainingEvents()
         }
+        verify { repository.getTrendings() }
+
     }
 
     @Test

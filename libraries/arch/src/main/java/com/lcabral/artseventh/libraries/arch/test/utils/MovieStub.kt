@@ -1,8 +1,8 @@
-package com.lcabral.artseventh.features.movies.presentation.viewmodel
+package com.lcabral.artseventh.libraries.arch.test.utils
 
+import androidx.paging.PagingData
 import com.lcabral.artseventh.core.domain.model.Movie
-
-internal object MovieStub {
+object MovieStub {
     fun getMovies(): List<Movie> {
         return listOf(
             Movie(
@@ -22,6 +22,8 @@ internal object MovieStub {
             )
         )
     }
+
+    val pagingData = PagingData.from(getMovies())
 
     fun getMovie(): Movie {
         return (

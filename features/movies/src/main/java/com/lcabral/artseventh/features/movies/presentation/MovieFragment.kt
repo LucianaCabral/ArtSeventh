@@ -1,5 +1,6 @@
 package com.lcabral.artseventh.features.movies.presentation
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -44,6 +45,11 @@ internal class MovieFragment : Fragment(R.layout.fragment_movie) {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        viewModel.getFavoriteMovies()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

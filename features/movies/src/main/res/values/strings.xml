@@ -2,7 +2,15 @@
     <string name="movie">Now Playing</string>
     <string name="movie_uri_image">https://image.tmdb.org/t/p/w500</string>
     <string name="movie_uri_placeholder">https:placeimg.com/640/480/any</string>
-    <string name="error_message">Ops! Favorites don´t saved.Try again</string>
+    <string name="error_message_favorite">Ops! Favorites don´t saved.Try again</string>
+    <string name="error_message_movies">Ops! Ocorreu um erro</string>
     <string name="delete_error_message">Ops! Favorites don´t deleted.Try again</string>
     <string name="save_favorite_success">Save</string>
+    <string name="networkError">Problems in your connection. Verify and try again</string>
+    <string name="service_unavailable_error">The service is unavailable</string>
+    <string name="dataError">There was a problem to access data. Try again</string>
+    <string name="generic_error">A error occurred. Try again</string>
+    <string name="retry">Retry</string>
+    <string name="erro_networking">Please check the internet connection and try again</string>
+    <string name="try_again_later">Something went wrong on our end. Please try again later.</string>
 </resources>

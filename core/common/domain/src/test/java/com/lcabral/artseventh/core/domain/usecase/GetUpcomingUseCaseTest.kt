@@ -30,8 +30,8 @@ internal class GetUpcomingUseCaseTest {
         // Then
         result.test {
             verify { repository.upcoming() }
-            assertEquals(expectItem(), expectedResult)
-            expectComplete()
+            assertEquals(expectedResult, awaitItem())
+            cancelAndConsumeRemainingEvents()
         }
     }
 
@@ -39,7 +39,6 @@ internal class GetUpcomingUseCaseTest {
     fun `upcoming Should return exception when invoked upcoming movies`() = runBlocking {
         // Given
         val cause = Throwable()
-        val expectedError = cause::class
 
         every { repository.upcoming() } returns flow { throw cause }
 
@@ -48,7 +47,7 @@ internal class GetUpcomingUseCaseTest {
 
         // Then
         result.test {
-            assertEquals(expectedError, expectError()::class)
+            assertEquals(cause, awaitError())
         }
         verify { repository.upcoming() }
     }

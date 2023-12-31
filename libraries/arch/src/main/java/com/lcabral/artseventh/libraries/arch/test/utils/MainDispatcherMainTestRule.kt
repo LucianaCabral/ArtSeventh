@@ -1,4 +1,4 @@
-package com.lcabral.artseventh.features.movies.presentation.viewmodel
+package com.lcabral.artseventh.libraries.arch.test.utils
 
 import androidx.annotation.VisibleForTesting
 import kotlinx.coroutines.Dispatchers
@@ -9,17 +9,16 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
-import java.lang.reflect.Modifier
 
-@VisibleForTesting(otherwise = Modifier.PRIVATE)
+@VisibleForTesting
 @OptIn(ExperimentalCoroutinesApi::class)
-open class DispatcherTestRule(
-    open val testDispatcher: TestDispatcher = StandardTestDispatcher()
+open class MainDispatcherMainTestRule(
+    open val mainDispatcher: TestDispatcher = StandardTestDispatcher()
 ) : TestWatcher() {
 
     override fun starting(description: Description) {
         super.starting(description)
-        Dispatchers.setMain(testDispatcher)
+        Dispatchers.setMain(mainDispatcher)
     }
 
     override fun finished(description: Description) {

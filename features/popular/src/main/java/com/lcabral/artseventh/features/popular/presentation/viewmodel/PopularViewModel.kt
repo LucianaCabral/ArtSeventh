@@ -34,7 +34,7 @@ internal class PopularViewModel(
             popularUseCase.invoke()
                 .flowOn(dispatcher)
                 .onStart { handleLoading() }
-                .catch { handleError() }
+                .catch { handleError(it) }
                 .collect(::handlePopularSuccess)
         }
     }
@@ -45,15 +45,19 @@ internal class PopularViewModel(
         )
     }
 
-    private fun handleError() {
-        _viewState.value = PopularViewState(flipperChild = FAILURE_CHILD)
+    private fun handleError(cause: Throwable) {
+        if (cause is Error) {
+            _viewState.value =
+                PopularViewState(flipperChild = FAILURE_CHILD)
+        }
     }
 
     private fun handleLoading() {
-        _viewState.value = PopularViewState(flipperChild = LOADING_CHILD,getPopularResultItems = null)
+        _viewState.value =
+            PopularViewState(flipperChild = LOADING_CHILD)
     }
 
     fun onAdapterItemClicked(popular: Movie) {
-      _viewAction.value = PopularViewAction.GoToDetails(popular)
+        _viewAction.value = PopularViewAction.GoToDetails(popular)
     }
 }

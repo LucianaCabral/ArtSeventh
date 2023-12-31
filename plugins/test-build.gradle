@@ -1,18 +1,18 @@
 dependencies {
     // Tests
     testImplementation(TestLibs.jUnitVersion)
-    testImplementation(TestLibs.coroutineTest)
+    api(TestLibs.coroutineTest)
     testImplementation(TestLibs.turbine)
     testImplementation(TestLibs.koinJunit4)
-    testImplementation(TestLibs.coreTesting)
-    testImplementation(TestLibs.mockk)
+    api(TestLibs.coreTesting)
+    api(TestLibs.mockk)
     testImplementation(TestLibs.kotlinTest)
     testImplementation(TestLibs.koinTest)
-    testImplementation(TestLibs.archCoreTest)
+    api(TestLibs.archCoreTest)
     testImplementation(TestLibs.mockServerTest)
 
     //Test android
-    androidTestImplementation(TestLibs.jUnitVersion)
+    api(TestLibs.jUnitVersion)
     androidTestImplementation(TestLibs.extJunit)
     androidTestImplementation(TestLibs.espressoCore)
 }
