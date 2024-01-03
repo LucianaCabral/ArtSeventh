@@ -18,7 +18,7 @@ internal class GetPopularUseCaseTest {
     private val subject = GetPopularUseCase(repository)
 
     @Test
-    fun `GetPopular Should return popular`() = runBlocking {
+    fun `GetPopular Should return popular When is invoked`() = runBlocking {
         // Given
         val expectedResult = Stub.getMovies()
 
@@ -29,18 +29,16 @@ internal class GetPopularUseCaseTest {
 
         // Then
         result.test {
-            verify { repository.getPopular() }
-            assertEquals(expectItem(), expectedResult)
-            expectComplete()
+            assertEquals(expectedResult, awaitItem())
+            cancelAndConsumeRemainingEvents()
         }
+        verify { repository.getPopular() }
     }
 
     @Test
     fun `GetPopular Should return exception when invoked popular`() = runBlocking {
         // Given
         val cause = Throwable()
-        val expectedResult = cause::class
-
         every { repository.getPopular() } returns flow { throw cause }
 
         // When
@@ -48,7 +46,7 @@ internal class GetPopularUseCaseTest {
 
         // Then
         result.test {
-            assertEquals(expectedResult, expectError()::class)
+            assertEquals(cause, awaitError())
         }
         verify { repository.getPopular() }
     }

@@ -2,9 +2,9 @@ object TestLibs {
     const val jUnitVersion = "junit:junit:${Versions.jUnitVersion}"
     const val coroutineTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutinesTest}"
     const val turbine = "app.cash.turbine:turbine:${Versions.turbine}"
-    const val koinJunit4 = "io.insert-koin:koin-test-junit4:${Versions.koinJunit4}"
+    const val koinJunit4 = "io.insert-koin:koin-test:${Versions.koinJunit4}"
     const val mockk = "io.mockk:mockk:${Versions.mockk}"
-    const val kotlinTest = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlinTest}"
+    const val kotlinTest = "org.jetbrains.kotlin:kotlin-test:${Versions.kotlinTest}"
     const val koinTest = "io.insert-koin:koin-test:${Versions.koinTest}"
     const val archCoreTest= "android.arch.core:core-testing:${Versions.archCoreTest}"
 

@@ -1,5 +1,6 @@
 package com.lcabral.artseventh.core.domain.usecase
 
+import androidx.paging.PagingData
 import com.lcabral.artseventh.core.domain.model.Movie
 
 internal object Stub {
@@ -22,6 +23,8 @@ internal object Stub {
             )
         )
     }
+
+    val pagingData = PagingData.from(getMovies())
 
     fun getMovie(): Movie {
         return Movie(

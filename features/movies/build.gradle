@@ -6,6 +6,14 @@ apply from: "$rootDir/plugins/android-build.gradle"
 
 android {
     namespace 'com.lcabral.artseventh.features.movies'
+
+    testOptions {
+        emulatorSnapshots {
+            enableForTestFailures true
+            maxSnapshotsForTestFailures 2
+            compressSnapshots false
+        }
+    }
 }
 
 dependencies {

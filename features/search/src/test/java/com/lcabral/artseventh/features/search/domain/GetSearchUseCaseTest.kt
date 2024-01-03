@@ -31,10 +31,11 @@ internal class GetSearchUseCaseTest {
 
         // Then
         searchMovieResult.test {
-            verify { searchRepository.searchMovies(query) }
-            assertEquals(expectItem(), result)
-            expectComplete()
+            assertEquals(result, awaitItem())
+            cancelAndConsumeRemainingEvents()
         }
+        verify { searchRepository.searchMovies(query) }
+
     }
 
     @Test

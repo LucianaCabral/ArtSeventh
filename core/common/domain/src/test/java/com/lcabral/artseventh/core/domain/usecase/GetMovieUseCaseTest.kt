@@ -2,11 +2,13 @@ package com.lcabral.artseventh.core.domain.usecase
 
 import app.cash.turbine.test
 import com.lcabral.artseventh.core.domain.repository.MovieRepository
+import com.lcabral.artseventh.core.domain.usecase.Stub.pagingData
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.time.ExperimentalTime
@@ -20,7 +22,7 @@ internal class GetMovieUseCaseTest {
     @Test
     fun `GetMovies Should return movies`() = runBlocking {
         // Given
-        val result = Stub.getMovies()
+        val result = pagingData
 
         every { repository.getMovies() } returns flow { emit(result) }
 
@@ -29,18 +31,17 @@ internal class GetMovieUseCaseTest {
 
         // Then
         movieResult.test {
-            verify { repository.getMovies() }
-            assertEquals(expectItem(), result)
-            expectComplete()
+            assertEquals(result, awaitItem())
+            cancelAndConsumeRemainingEvents()
         }
+        verify { repository.getMovies() }
+
     }
 
     @Test
-    fun `GetMovies Should return exception when invoked movies`() = runBlocking {
+    fun `GetMovies Should return exception when invoked movies`() = runTest {
         // Given
         val cause = Throwable()
-        val expectedResult = cause::class
-
         every { repository.getMovies() } returns flow { throw cause }
 
         // When
@@ -48,7 +49,7 @@ internal class GetMovieUseCaseTest {
 
         // Then
         result.test {
-            assertEquals(expectedResult, expectError()::class)
+            assertEquals(cause, awaitError())
         }
         verify { repository.getMovies() }
     }

@@ -1,5 +1,4 @@
 object Versions {
-    const val archCoreTest = "1.1.1"
     const val appCompat = "1.6.1"
     const val extJunit = "1.1.3"
     const val androidxJunit_version = "1.1.3"
@@ -8,8 +7,6 @@ object Versions {
     const val coroutinesCore = "1.6.0"
     const val constraintLayout = "2.1.4"
     const val coil = "1.3.0"
-    const val coroutinesTest = "1.8.0-RC"
-    const val coreTesting = "2.1.0"
     const val circleImageView = "3.1.0"
     const val espressoCore = "3.5.1"
     const val fragment = "1.6.0"
@@ -24,15 +21,7 @@ object Versions {
     const val koinAndroid = "2.2.3"
     const val koinScope = "2.2.3"
     const val koinViewModel = "2.2.3"
-    const val koinJunit4 = "3.1.6"
-    const val kotlinTest = "1.1.0"
-    const val jUnitVersion = "4.13.2"
-    const val turbine = "0.5.2"
-    const val junit ="4.12"
-    const val junitKtx = "1.1.3"
     const val material = "1.8.0"
-    const val mockk = "1.12.1"
-    const val mockServerTest = "4.9.0"
     const val retrofit = "2.9.0"
     const val retrofitGsonConverter = "2.9.0"
     const val roomRuntime = "2.5.2"
@@ -51,7 +40,25 @@ object Versions {
     const val swipeRefreshLayout = "1.1.0"
     const val splashScreenCore = "1.0.0"
     const val timber = "5.0.1"
-    const val testRules_version = "1.3.0"
+
+    // Tests Libs
+    const val archCoreTest = "1.1.1"
+    const val coreTesting = "2.1.0"
+    const val coroutinesTest = "1.8.0-RC"
     const val koinTest = "2.2.3"
+    const val kotlinTest = "1.7.20"
+    const val koinJunit4 = "2.2.3"
+    const val mockk = "1.12.1"
+    const val mockServerTest = "4.9.0"
+    const val testRules_version = "1.3.0"
+    const val jUnitVersion = "4.13.2"
+    const val junit ="4.12"
+    const val junitKtx = "1.1.3"
+    const val turbine = "0.8.0"
+
+
+
+
+
 
 }

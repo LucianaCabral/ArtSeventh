@@ -7,6 +7,6 @@ internal const val SUCCESS_CHILD = 1
 internal const val FAILURE_CHILD = 2
 
 internal data class PopularViewState(
+    val flipperChild: Int = LOADING_CHILD,
     val getPopularResultItems: List<Movie>? = null,
-    val flipperChild: Int = LOADING_CHILD
 )

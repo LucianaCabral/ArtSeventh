@@ -1,6 +1,5 @@
 package com.lcabral.artseventh.features.movies.presentation.viewmodel
 
-import androidx.annotation.StringRes
 import androidx.paging.PagingData
 import com.lcabral.artseventh.core.domain.model.Movie
 import kotlinx.coroutines.flow.Flow
@@ -13,5 +12,15 @@ internal const val FAILURE_CHILD = 2
 internal data class MovieStateView(
     val movies: Flow<PagingData<Movie>> = emptyFlow(),
     val flipperChild: Int = LOADING_CHILD,
-    @StringRes val message: Int? = null
-)
+    val shouldShowError: Boolean = false,
+    val errorMessageRes: String? = null,
+    val shouldShowEmptyLayout: Boolean = false,
+) {
+
+//    fun getFailureState(errorMessageRes: Int) = copy(
+//        flipperChild = LOADING_CHILD,
+//        shouldShowError = true,
+//        errorMessageRes = errorMessageRes,
+//        shouldShowEmptyLayout = movies.isNull()
+//    )
+}
